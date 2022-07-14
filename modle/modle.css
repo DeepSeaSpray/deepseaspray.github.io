@@ -1,0 +1,26 @@
+body
+{
+    /*
+    background-image:url(http://pcsource.upupoo.com/theme/2000758290/previewFix.jpg);
+    background-image:url(https://img.zcool.cn/community/01e5ed5d5fbc0ca8012187f4bfc51d.jpg@1280w_1l_2o_100sh.jpg);
+    background-attachment:fixed;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    line-height:100%;
+    */
+    background-color:rgba(220, 220, 220, 0.5);
+}
+#main
+{
+    background-color:GhostWhite;
+    margin-top:5%;
+    margin-left:5%;
+    margin-right:5%;
+    margin-bottom:5%;
+    padding-top:5%;
+    padding-bottom:5%;
+    padding-left:5%;
+    padding-right:5%;
+    opacity:0.8;
+}

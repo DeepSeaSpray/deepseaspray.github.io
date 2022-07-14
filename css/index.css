@@ -1,0 +1,68 @@
+/*背景设定*/
+body
+{
+    background-color:rgba(220, 220, 220, 0.5);
+}
+#main
+{
+    background-color:White;
+    margin-top:5%;
+    margin-left:10%;
+    margin-right:10%;
+    padding-top:5%;
+    padding-bottom:5%;
+    padding-left:5%;
+    padding-right:5%;
+    opacity:0.8;
+}
+/*通用设定*/
+.icon_text_box
+{
+    display:flex;
+}
+.text_link
+{
+    color:blue;
+    text-decoration:none;
+}
+.contact
+{
+    color:blue;
+    font-style:italic;
+}
+
+a
+{
+    text-decoration:none;
+}
+/*内容设定*/
+#heading
+{
+    text-align:center;
+}
+
+#bilibili_link_text
+{
+    color:rgb(248, 129, 148);
+    font-size:24px;
+    font-weight:500;
+}
+#studio_link_text
+{
+    color:rgb(27, 27, 209);
+    font-size:24px;
+    font-weight:500;
+}
+#ak_ioi
+{
+    color:red;
+    font-size:40px;
+    margin-left:50%;
+    right:56.1px;
+    position:relative;
+}
+/*结尾设定*/
+#endding
+{
+    text-align:center;
+}
