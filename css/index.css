@@ -66,3 +66,16 @@ a
 {
     text-align:center;
 }
+/*导航栏设定*/
+nav
+{
+    z-index:2;
+    width:100%;
+    background-color:#262626;
+    opacity:0.8;
+    position:fixed;
+    top:0px;
+    left:0px;
+    opacity:1;
+    height:70px;
+}
