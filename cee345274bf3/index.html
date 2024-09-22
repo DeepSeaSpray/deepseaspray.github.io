@@ -268,7 +268,7 @@
 <p>令 $sz(S)$ 表示联通块大小，那么最小值为当前新加入节点编号 $u$ 的路径数等于 $A$ 连通块内路径跨越 $u$ 节点的点对数，算式如下，简单，不做解释。</p>
 <p>$$<br>\binom{sz(A)}{2} - \sum \binom{sz(B_i)}{2}<br>$$</p>
 <p>时间复杂度 $O(n)$。</p>
-<h2 id="mex"><a href="#mex" class="headerlink" title="mex"></a>mex</h2><p>直接求 $mex$ 并不好操作。考虑一件事情，对于一条 $mex$ 大于 $w$ 的路径，其必包含 $[0,w-1]$ 中的所有数，而不包含 $w$。</p>
+<h2 id="mex"><a href="#mex" class="headerlink" title="mex"></a>mex</h2><p>直接求 $mex$ 并不好操作。考虑一件事情，对于一条 $mex$ 等于 $w$ 的路径，其必包含 $[0,w-1]$ 中的所有数，而不包含 $w$。</p>
 <p>记 $cnt(w)$ 表示包含 $[0,w]$ 中的所有数的路径数。</p>
 <p>那么 $mex$ 为 $w$ 的路径数即为 $cnt(w+1) - cnt(w)$。</p>
 <p>考虑如何求出 $cnt$。</p>
@@ -325,9 +325,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/2024-09-22%E6%A8%A1%E6%8B%9F%E8%B5%9B/"># 2024-09-22模拟赛</a>
-                    
                         <a href="/tags/Tree/"># Tree</a>
+                    
+                        <a href="/tags/2024-09-22%E6%A8%A1%E6%8B%9F%E8%B5%9B/"># 2024-09-22模拟赛</a>
                     
                         
                 </span>
