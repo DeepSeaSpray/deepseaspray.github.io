@@ -17,7 +17,7 @@
     <meta name="keywords" content="DeepSeaSpray blog">
 
 
-<title>柯西不等式与带余除法 | DeepSeaSpray&#39;s blog</title>
+<title>Count题解 | DeepSeaSpray&#39;s blog</title>
 
 
 
@@ -237,7 +237,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">柯西不等式与带余除法</h1>
+            <h1 class="post-title">Count题解</h1>
             
                 <div class="post-meta">
                     
@@ -246,14 +246,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">九月 8, 2024&nbsp;&nbsp;22:10:20</a>
+                        Date: <a href="#">八月 27, 2024&nbsp;&nbsp;7:35:48</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Math/">Math</a>
+                                <a href="/categories/Solution/">Solution</a>
                             
                         </span>
                     
@@ -262,12 +262,41 @@
         </header>
 
         <div class="post-content">
-            <h1 id="柯西不等式与带余除法"><a href="#柯西不等式与带余除法" class="headerlink" title="柯西不等式与带余除法"></a>柯西不等式与带余除法</h1><p>信息学竞赛中经常遇到这样的问题。</p>
-<p>给定一个值 $A$，你构建一组满足 $\sum_{i&#x3D;1}^n a_i &#x3D; A$ 的整数，使得 $\sum_{i&#x3D;1}^n a_i^2$ 最小。</p>
-<p>由于整数的限制，柯西不一定能取等，故考虑拉格朗日恒等式。</p>
-<p>$$<br>\sum_{i&#x3D;1}^n a_i &#x3D; \frac{(\sum_{i&#x3D;1}^n a_i)^2 + \sum_{i&lt;j} (a_i - a_j)^2}{n}<br>$$</p>
-<p>其中 $(\sum_{i&#x3D;1}^n a_i)^2 &#x3D; A^2$ 为定值，我们需要 $\sum_{i&lt;j} (a_i - a_j)^2$ 最小。</p>
-<p>我们希望 $a_i$ 尽量相等，加上整数的限制，带余除法即可达成。</p>
+            <h1 id="Count"><a href="#Count" class="headerlink" title="Count"></a>Count</h1><p>注意到对于一个集合 $S$。$min(S)$，$mex(S)$ 恰好有一个为 $0$ 另一个大于 $0$。</p>
+<p>故对于 $min(Path(u,v))+mex(Path(u,v))$ 计数等价于对于 $min(Path(u,v))$ 与 $mex(Path(u,v))$ 分别计数，然后去除 $0$ 的计数即可（由上述性质可知 $min + mex &gt; 0$）。</p>
+<h2 id="min"><a href="#min" class="headerlink" title="min"></a>min</h2><p>对于 $min$ 的计数，我们考虑从大到小依次加入节点，其会连接起若干个连通块 $B_i$，形成一个更大的连通块 $A$。</p>
+<p>令 $sz(S)$ 表示联通块大小，那么最小值为当前新加入节点编号 $u$ 的路径数等于 $A$ 连通块内路径跨越 $u$ 节点的点对数，算式如下，简单，不做解释。</p>
+<p>$$<br>\binom{sz(A)}{2} - \sum \binom{sz(B_i)}{2}<br>$$</p>
+<p>时间复杂度 $O(n)$。</p>
+<h2 id="mex"><a href="#mex" class="headerlink" title="mex"></a>mex</h2><p>直接求 $mex$ 并不好操作。考虑一件事情，对于一条 $mex$ 大于 $w$ 的路径，其必包含 $[0,w-1]$ 中的所有数，而不包含 $w$。</p>
+<p>记 $cnt(w)$ 表示包含 $[0,w]$ 中的所有数的路径数。</p>
+<p>那么 $mex$ 为 $w$ 的路径数即为 $cnt(w+1) - cnt(w)$。</p>
+<p>考虑如何求出 $cnt$。</p>
+<p>我们类似双指针记录路径 $Path(u,v)$，初始为 $Path(0,0)$，表示最短的包含 $[0,w]$ 所有数的路径，$w$ 初始为 $0$。</p>
+<p>$cnt(0)$ 是可以算出来的，但是我们不需要。</p>
+<p>考虑如何从 $w-1$ 的路径推出 $w$ 的路径。</p>
+<p>记 $tu&#x3D;lca(u,w)$，$tv&#x3D;lca(v,w)$。</p>
+<ul>
+<li>若 $tu&#x3D;0$ 且 $tv&#x3D;v$ 则令 $v’&#x3D;w$。</li>
+<li>若 $tv&#x3D;0$ 且 $tu&#x3D;u$ 则令 $u’&#x3D;w$。</li>
+<li>若 $tu \not&#x3D; w$ 且 $tv \not&#x3D; w$，没有合法路径，退出。</li>
+<li>否则，不需要改变双指针。</li>
+</ul>
+<p>建议画图理解每一步的具体含义。</p>
+<p>那么 $cnt(w) &#x3D; sz(u) * sz(v)$，其中 $sz$ 表示子树大小。</p>
+<p>需要特殊判断的是 $u&#x3D;0$ 或 $v&#x3D;0$ 时，这里以 $u&#x3D;0$ 举例：</p>
+<p>令 $fv$ 为 $v$ 的非根最早祖宗。</p>
+<p>$cnt(w) &#x3D; sz(fv) \times (n - sz(fv))$</p>
+<p>这一部分很不幸的找到原题 <code>CF1527D</code>，非常抱歉，题解与标程的这一部分也使用了此原题的做法以替换原来的答辩做法。</p>
+<p>时间复杂度 $O(n\log n)$。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>总时间复杂度 $O(n\log n)$。</p>
+<p>至此，我们分别统计出了 $min$，$mex$ 的答案，简单相加即可。</p>
+<ul>
+<li>记得开 <code>long long</code></li>
+<li>边数组记得两倍</li>
+<li>小心 <code>lca</code></li>
+</ul>
+<p>本题码量稍大，建议使用更优秀的实现方式。</p>
 
         </div>
 
@@ -282,7 +311,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://deepseaspray.github.io/ed48e428b49e/">https://deepseaspray.github.io/ed48e428b49e/</a></span>
+                        <span><a href="https://deepseaspray.github.io/cee345274bf3/">https://deepseaspray.github.io/cee345274bf3/</a></span>
                     </p>
                 
                 
@@ -296,7 +325,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Algebra/"># Algebra</a>
+                        <a href="/tags/Tree/"># Tree</a>
                     
                         
                 </span>
@@ -309,8 +338,8 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/273064ef88cc/">Sequence题解</a>
             
-            <a class="next" rel="next" href="/273064ef88cc/">Sequence题解</a>
             
         </section>
 
