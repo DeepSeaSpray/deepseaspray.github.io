@@ -17,7 +17,7 @@
     <meta name="keywords" content="DeepSeaSpray blog">
 
 
-<title>柯西不等式与带余除法 | DeepSeaSpray&#39;s blog</title>
+<title>Category: CF-Solution | DeepSeaSpray&#39;s blog</title>
 
 
 
@@ -165,157 +165,30 @@
     }
 </script>
             <div class="main">
-                <div class="container">
+                
+
+
+    
+<div class="container">
+    <div class="post-wrap categories">
+        <h2 class="post-title">-&nbsp;Categories&nbsp;·&nbsp;CF-Solution-</h2>
+    </div>
+    <div class="post-wrap archive">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
+        
+
+        
+            <h3>2024</h3>
+        
+
+        <article class="archive-item">
+            <a class="archive-item-link" href="/6dec6b135010/">CF1993E Xor-Grid Problem 题解</a>
+            <span class="archive-item-date">九月 23, 2024</span>
+        </article>
+    
+    
 </div>
-
-<script>
-    var tocbot_timer;
-    var DEPTH_MAX = 6; // 为 6 时展开所有
-    var tocbot_default_config = {
-        tocSelector: '.tocbot-list',
-        contentSelector: '.post-content',
-        headingSelector: 'h1, h2, h3, h4, h5',
-        orderedList: false,
-        scrollSmooth: true,
-        onClick: extend_click,
-    };
-
-    function extend_click() {
-        clearTimeout(tocbot_timer);
-        tocbot_timer = setTimeout(function() {
-            tocbot.refresh(obj_merge(tocbot_default_config, {
-                hasInnerContainers: true
-            }));
-        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
-    }
-
-    document.ready(function() {
-        tocbot.init(obj_merge(tocbot_default_config, {
-            collapseDepth: 1
-        }));
-    });
-
-    function expand_toc() {
-        var b = document.querySelector('.tocbot-toc-expand');
-        var expanded = b.getAttribute('data-expanded');
-        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
-        tocbot.refresh(obj_merge(tocbot_default_config, {
-            collapseDepth: expanded ? 1 : DEPTH_MAX
-        }));
-        b.innerText = expanded ? 'Expand all' : 'Collapse all';
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-    function obj_merge(target, source) {
-        for (var item in source) {
-            if (source.hasOwnProperty(item)) {
-                target[item] = source[item];
-            }
-        }
-        return target;
-    }
-</script>
-    
-
-    
-    <article class="post-wrap">
-        <header class="post-header">
-            <h1 class="post-title">柯西不等式与带余除法</h1>
-            
-                <div class="post-meta">
-                    
-                        Author: <a itemprop="author" rel="author" href="/">DeepSeaSpray</a>
-                    
-
-                    
-                        <span class="post-time">
-                        Date: <a href="#">九月 8, 2024&nbsp;&nbsp;22:10:20</a>
-                        </span>
-                    
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/Math/">Math</a>
-                            
-                        </span>
-                    
-                </div>
-            
-        </header>
-
-        <div class="post-content">
-            <h1 id="柯西不等式与带余除法"><a href="#柯西不等式与带余除法" class="headerlink" title="柯西不等式与带余除法"></a>柯西不等式与带余除法</h1><p>信息学竞赛中经常遇到这样的问题。</p>
-<p>给定一个值 $A$，你构建一组满足 $\sum_{i&#x3D;1}^n a_i &#x3D; A$ 的整数，使得 $\sum_{i&#x3D;1}^n a_i^2$ 最小。</p>
-<p>由于整数的限制，柯西不一定能取等，故考虑拉格朗日恒等式。</p>
-<p>$$<br>\sum_{i&#x3D;1}^n a_i &#x3D; \frac{(\sum_{i&#x3D;1}^n a_i)^2 + \sum_{i&lt;j} (a_i - a_j)^2}{n}<br>$$</p>
-<p>其中 $(\sum_{i&#x3D;1}^n a_i)^2 &#x3D; A^2$ 为定值，我们需要 $\sum_{i&lt;j} (a_i - a_j)^2$ 最小。</p>
-<p>我们希望 $a_i$ 尽量相等，加上整数的限制，带余除法即可达成。</p>
-
-        </div>
-
-        
-            <section class="post-copyright">
-                
-                    <p class="copyright-item">
-                        <span>Author:</span>
-                        <span>DeepSeaSpray</span>
-                    </p>
-                
-                
-                    <p class="copyright-item">
-                        <span>Permalink:</span>
-                        <span><a href="https://deepseaspray.github.io/ed48e428b49e/">https://deepseaspray.github.io/ed48e428b49e/</a></span>
-                    </p>
-                
-                
-                
-
-            </section>
-        
-        <section class="post-tags">
-            <div>
-                <span>Tag(s):</span>
-                <span class="tag">
-                    
-                    
-                        <a href="/tags/Algebra/"># Algebra</a>
-                    
-                        
-                </span>
-            </div>
-            <div>
-                <a href="javascript:window.history.back();">back</a>
-                <span>· </span>
-                <a href="/">home</a>
-            </div>
-        </section>
-        <section class="post-nav">
-            
-            
-            <a class="next" rel="next" href="/273064ef88cc/">Sequence题解</a>
-            
-        </section>
-
-
-    </article>
 </div>
 
             </div>
