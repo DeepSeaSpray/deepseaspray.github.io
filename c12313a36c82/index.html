@@ -17,7 +17,7 @@
     <meta name="keywords" content="DeepSeaSpray blog">
 
 
-<title>Game 题解 | DeepSeaSpray&#39;s blog</title>
+<title>LGP7202 [COCI2019-2020#1] Trobojnica | DeepSeaSpray&#39;s blog</title>
 
 
 
@@ -237,7 +237,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Game 题解</h1>
+            <h1 class="post-title">LGP7202 [COCI2019-2020#1] Trobojnica</h1>
             
                 <div class="post-meta">
                     
@@ -246,14 +246,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">九月 29, 2024&nbsp;&nbsp;8:59:24</a>
+                        Date: <a href="#">九月 29, 2024&nbsp;&nbsp;11:09:49</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Math/">Math</a>
+                                <a href="/categories/LGP-Solution/">LGP-Solution</a>
                             
                         </span>
                     
@@ -262,23 +262,20 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Game-题解"><a href="#Game-题解" class="headerlink" title="Game 题解"></a>Game 题解</h1><p>源自 <code>IMO2012 D1T3</code>。</p>
-<h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>出了一道交互题，题目文件如下。</p>
-<p><a href="Game.zip">Game.zip</a></p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>我们考虑我们询问的一个集合 $S$。</p>
-<p>如果回答为 <code>No</code> 那么其指向 $x \not &#x3D; S$。</p>
-<p>如果回答为 <code>Yes</code> 那么其指向 $x \not &#x3D; \overline S$。</p>
-<p>考虑不断排除。</p>
-<p>首先我们发现所有数都是对称的，因此我们可以将它们重新标号。</p>
-<p>我们不妨重新标号成 $0,1,\dots,2^K,\dots,m-1$。</p>
-<p>我们这样做：</p>
-<p>先询问 $K+1$ 次 $2^K$，如果全部都回答 <code>No</code> 那么 $x !&#x3D; 2^K$。</p>
-<p>否则，我们在第一次回答 <code>Yes</code> 时停止继续询问。</p>
-<p>然后对于每一个 $0 \leq i \leq K-1$，我们询问集合 $S$ 包含所有二进制第 $i$ 位为 $1$ 的 $\leq 2^K - 1$ 的元素。</p>
-<p>每个问题的答案指向第 $i$ 位为 $0$ 或 $1$ 的元素 $\not &#x3D; x$。</p>
-<p>它们的并集恰好是一个数，同时还有上面的一次 <code>Yes</code> 的回答，总共 $K+1$ 次，必定包含一句真话。</p>
-<p>所以这个数一定不是 $x$，排除掉，重新标号，继续做。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> test;</span><br><span class="line"><span class="type">int</span> n,m,K;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; V;</span><br><span class="line">string s;</span><br><span class="line"><span class="type">int</span> cnt,tmp;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;test;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m&gt;&gt;K;</span><br><span class="line">    m=<span class="number">1</span>&lt;&lt;K;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) V.<span class="built_in">push_back</span>(i);</span><br><span class="line">    <span class="keyword">while</span>((<span class="type">int</span>)V.<span class="built_in">size</span>()&gt;m)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=K<span class="number">+1</span>;i++)&#123;</span><br><span class="line">            cout&lt;&lt;<span class="number">1</span>&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;V[m]&lt;&lt;endl;</span><br><span class="line">            cin&gt;&gt;s;</span><br><span class="line">            <span class="keyword">if</span>(s==<span class="string">&quot;Yes&quot;</span>) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s==<span class="string">&quot;No&quot;</span>) V.<span class="built_in">erase</span>(V.<span class="built_in">begin</span>()+m);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            tmp=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;K;i++)&#123;</span><br><span class="line">                cout&lt;&lt;(m&gt;&gt;<span class="number">1</span>)&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;m;j++)</span><br><span class="line">                    <span class="keyword">if</span>(j&amp;(<span class="number">1</span>&lt;&lt;i)) cout&lt;&lt;V[j]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">                cout&lt;&lt;endl;</span><br><span class="line">                cin&gt;&gt;s;</span><br><span class="line">                <span class="keyword">if</span>(s==<span class="string">&quot;No&quot;</span>) tmp|=<span class="number">1</span>&lt;&lt;i;</span><br><span class="line">            &#125;</span><br><span class="line">            V.<span class="built_in">erase</span>(V.<span class="built_in">begin</span>()+tmp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;<span class="number">0</span>&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;m&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i:V) cout&lt;&lt;i&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h1 id="LGP7202-COCI2019-2020-1-Trobojnica"><a href="#LGP7202-COCI2019-2020-1-Trobojnica" class="headerlink" title="LGP7202 [COCI2019-2020#1] Trobojnica"></a>LGP7202 [COCI2019-2020#1] Trobojnica</h1><p>参考了各路题解。</p>
+<p>首先如果一个多边形全部都是一种颜色显然无法分割。</p>
+<p>又，我们注意到 $1 \oplus 2 \oplus 3 &#x3D; 0$。</p>
+<p>故一个符合条件的三角形三边颜色异或和为 $0$。</p>
+<p>故一个多边形的颜色异或和必须为 $0$ 才能有解。</p>
+<p>让我们考虑一次在多边形上分割三角形操作带来的影响，这会使得两种不同颜色的边数量减少 $1$，另一种颜色的边数量增加 $1$，不影响颜色异或和。</p>
+<p>考虑我们每一次都只选择两条颜色不一样且数量都不为 $1$ 的边合并。</p>
+<p>首先这是一定可以做到的。</p>
+<p>然后因为这样分割我们一定不会使得多边形的边都变成同一种颜色，又颜色异或和恒为 $0$，所以我们一定可以分割这个多边形。</p>
+<p>我们考虑不断查找第一个符合上述合并条件的边，然后合并。在上一次操作的位置继续找下去即可。</p>
+<p>你可能会思考：合并之后，其前一条与后一条都有可能与其合并。</p>
+<p>然而，因为我们找到的是第一个符合条件的边，所以这一种情况是自相矛盾，不可能出现的。</p>
+<p>在这样的操作下，我们每一条边都只会被扫一次，所以时间复杂度是 $O(n)$ 的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">2e5</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">char</span> s[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> cnt[<span class="number">5</span>],sum;</span><br><span class="line"><span class="type">int</span> nxt[maxn<span class="number">+5</span>],col[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> ansx[maxn<span class="number">+5</span>],ansy[maxn<span class="number">+5</span>],ansc[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        nxt[i]=(i<span class="number">+1</span>)%n;</span><br><span class="line">        col[i]=s[i]-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        cnt[col[i]]++;</span><br><span class="line">        sum^=col[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> x=<span class="number">0</span>,y;</span><br><span class="line">    <span class="keyword">if</span>(cnt[<span class="number">1</span>]==n||cnt[<span class="number">2</span>]==n||cnt[<span class="number">3</span>]==n||sum)&#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;NE&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> t=<span class="number">0</span>;t&lt;n<span class="number">-3</span>;t++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(;col[x]==col[nxt[x]]</span><br><span class="line">            ||(cnt[col[x]]==<span class="number">1</span>&amp;&amp;cnt[col[nxt[x]]]==<span class="number">1</span>);x=nxt[x]);</span><br><span class="line">        y=nxt[x];</span><br><span class="line">        cnt[col[x]]--;</span><br><span class="line">        cnt[col[y]]--;</span><br><span class="line">        cnt[col[x]^col[y]]++;</span><br><span class="line">        nxt[x]=nxt[y];</span><br><span class="line">        col[x]=col[x]^col[y];</span><br><span class="line">        ansx[t]=x;</span><br><span class="line">        ansy[t]=nxt[x];</span><br><span class="line">        ansc[t]=col[x];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;DA&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> t=<span class="number">0</span>;t&lt;n<span class="number">-3</span>;t++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>,ansx[t]<span class="number">+1</span>,ansy[t]<span class="number">+1</span>,ansc[t]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
 
         
@@ -292,7 +289,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://deepseaspray.github.io/64cf6d0f6b09/">https://deepseaspray.github.io/64cf6d0f6b09/</a></span>
+                        <span><a href="https://deepseaspray.github.io/c12313a36c82/">https://deepseaspray.github.io/c12313a36c82/</a></span>
                     </p>
                 
                 
@@ -305,10 +302,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/Combination/"># Combination</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -319,10 +312,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/c12313a36c82/">LGP7202 [COCI2019-2020#1] Trobojnica</a>
             
-            
-            <a class="next" rel="next" href="/b1910be7b14a/">LGP9212 「蓬莱人形」</a>
+            <a class="next" rel="next" href="/64cf6d0f6b09/">Game 题解</a>
             
         </section>
 
