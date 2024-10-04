@@ -168,71 +168,6 @@
                 <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    var tocbot_timer;
-    var DEPTH_MAX = 6; // 为 6 时展开所有
-    var tocbot_default_config = {
-        tocSelector: '.tocbot-list',
-        contentSelector: '.post-content',
-        headingSelector: 'h1, h2, h3, h4, h5',
-        orderedList: false,
-        scrollSmooth: true,
-        onClick: extend_click,
-    };
-
-    function extend_click() {
-        clearTimeout(tocbot_timer);
-        tocbot_timer = setTimeout(function() {
-            tocbot.refresh(obj_merge(tocbot_default_config, {
-                hasInnerContainers: true
-            }));
-        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
-    }
-
-    document.ready(function() {
-        tocbot.init(obj_merge(tocbot_default_config, {
-            collapseDepth: 1
-        }));
-    });
-
-    function expand_toc() {
-        var b = document.querySelector('.tocbot-toc-expand');
-        var expanded = b.getAttribute('data-expanded');
-        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
-        tocbot.refresh(obj_merge(tocbot_default_config, {
-            collapseDepth: expanded ? 1 : DEPTH_MAX
-        }));
-        b.innerText = expanded ? 'Expand all' : 'Collapse all';
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-    function obj_merge(target, source) {
-        for (var item in source) {
-            if (source.hasOwnProperty(item)) {
-                target[item] = source[item];
-            }
-        }
-        return target;
-    }
-</script>
-    
 
     
     <article class="post-wrap">
@@ -262,7 +197,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="CF542E-Playing-on-Graph-题解"><a href="#CF542E-Playing-on-Graph-题解" class="headerlink" title="CF542E Playing on Graph 题解"></a>CF542E Playing on Graph 题解</h1><p>首先我们无法将三角形变成一条链，而一个奇环操作之后将减少两个点最后变成三角形，所以有奇环则无法变成一条链。</p>
+            <p>首先我们无法将三角形变成一条链，而一个奇环操作之后将减少两个点最后变成三角形，所以有奇环则无法变成一条链。</p>
 <p>对于一个无奇环的图，它一定是一个二分图。我们考虑对于每一个联通子块，以一个点为根生成BFS树。由于是二分图，同一层的节点都在同一部，互相没有连边，所以可以全部缩在一起，这样我们可以得到以这个点为起点可以生成的最长链。</p>
 <p>那么一个联通子块的最长链就是这个子块的直径。</p>
 <p>所以最后的答案就是所有联通子块的直径和。</p>

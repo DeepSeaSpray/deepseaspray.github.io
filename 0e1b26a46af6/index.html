@@ -262,7 +262,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Count-题解"><a href="#Count-题解" class="headerlink" title="Count 题解"></a>Count 题解</h1><p>注意到对于一个集合 $S$。$min(S)$，$mex(S)$ 恰好有一个为 $0$ 另一个大于 $0$。</p>
+            <p>注意到对于一个集合 $S$。$min(S)$，$mex(S)$ 恰好有一个为 $0$ 另一个大于 $0$。</p>
 <p>故对于 $min(Path(u,v))+mex(Path(u,v))$ 计数等价于对于 $min(Path(u,v))$ 与 $mex(Path(u,v))$ 分别计数，然后去除 $0$ 的计数即可（由上述性质可知 $min + mex &gt; 0$）。</p>
 <h2 id="min"><a href="#min" class="headerlink" title="min"></a>min</h2><p>对于 $min$ 的计数，我们考虑从大到小依次加入节点，其会连接起若干个连通块 $B_i$，形成一个更大的连通块 $A$。</p>
 <p>令 $sz(S)$ 表示联通块大小，那么最小值为当前新加入节点编号 $u$ 的路径数等于 $A$ 连通块内路径跨越 $u$ 节点的点对数，算式如下，简单，不做解释。</p>

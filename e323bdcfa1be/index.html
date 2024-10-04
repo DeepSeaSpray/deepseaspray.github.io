@@ -168,71 +168,6 @@
                 <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    var tocbot_timer;
-    var DEPTH_MAX = 6; // 为 6 时展开所有
-    var tocbot_default_config = {
-        tocSelector: '.tocbot-list',
-        contentSelector: '.post-content',
-        headingSelector: 'h1, h2, h3, h4, h5',
-        orderedList: false,
-        scrollSmooth: true,
-        onClick: extend_click,
-    };
-
-    function extend_click() {
-        clearTimeout(tocbot_timer);
-        tocbot_timer = setTimeout(function() {
-            tocbot.refresh(obj_merge(tocbot_default_config, {
-                hasInnerContainers: true
-            }));
-        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
-    }
-
-    document.ready(function() {
-        tocbot.init(obj_merge(tocbot_default_config, {
-            collapseDepth: 1
-        }));
-    });
-
-    function expand_toc() {
-        var b = document.querySelector('.tocbot-toc-expand');
-        var expanded = b.getAttribute('data-expanded');
-        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
-        tocbot.refresh(obj_merge(tocbot_default_config, {
-            collapseDepth: expanded ? 1 : DEPTH_MAX
-        }));
-        b.innerText = expanded ? 'Expand all' : 'Collapse all';
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-    function obj_merge(target, source) {
-        for (var item in source) {
-            if (source.hasOwnProperty(item)) {
-                target[item] = source[item];
-            }
-        }
-        return target;
-    }
-</script>
-    
 
     
     <article class="post-wrap">
@@ -262,7 +197,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="LGP10777-BZOJ3706-反色刷"><a href="#LGP10777-BZOJ3706-反色刷" class="headerlink" title="LGP10777 BZOJ3706 反色刷"></a>LGP10777 BZOJ3706 反色刷</h1><p>对于一个连通块，如果不存在黑边度数为奇数的点，那么一定可以把所有边都刷成白色。</p>
+            <p>对于一个连通块，如果不存在黑边度数为奇数的点，那么一定可以把所有边都刷成白色。</p>
 <p>证明，我们提出所有的黑边，构成一些连通块，这些点的度数都是偶数，通过欧拉回路即证。</p>
 <p>接着我们证明对于每一个这样的连通块，我们总可以一次刷完。</p>
 <p>上面证明了对于每一个黑边连通块，我们都可以一次刷完。在原图的一个连通块中，对于两个黑边连通块，我们都可以找到一条路径走过去，然后再走回来。所以我们一定可以一次刷完。</p>
