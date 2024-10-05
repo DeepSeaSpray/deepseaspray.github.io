@@ -198,19 +198,19 @@
 
         <div class="post-content">
             <p>官方题解：<a target="_blank" rel="noopener" href="https://usaco.org/current/data/sol_cowrun.html">Link</a></p>
-<p>首先考虑暴力，具体来说可以从 <em>SG</em> 函数的角度思考。</p>
+<p>首先考虑暴力，具体来说可以从 SG 函数的角度思考。</p>
 <p>如果一个位置可行那么设为 $1$，不可行则设为 $0$。</p>
-<p>那么贝茜的操作即取 <em>AND</em>，<em>FJ</em> 的操作即取 <em>OR</em>。</p>
+<p>那么贝茜的操作即取 AND，FJ 的操作即取 OR。</p>
 <p>见官方题解图：</p>
 <p><img src="/9934f7638d96/image.png" alt="image"></p>
-<p>我们可以逐步确定取牌的策略，即先尝试取 <em>B</em>，检验是否可行，若不可行，取 <em>T</em>，（这样做是因为还有字典序最小的要求）。</p>
+<p>我们可以逐步确定取牌的策略，即先尝试取 <code>B</code>，检验是否可行，若不可行，取 <code>T</code>，（这样做是因为还有字典序最小的要求）。</p>
 <p>暴力检验是 $O(2^{2n})$ 的。</p>
-<p>接着我们发现 <em>OR</em> 和 <em>AND</em> 都有<strong>短路</strong>的性质，即 <em>OR</em> 中出现了一个 $1$ 之后就会停止运算，<em>AND</em> 类似。</p>
+<p>接着我们发现 OR 和 AND 都有<strong>短路</strong>的性质，即 OR 中出现了一个 $1$ 之后就会停止运算，AND 类似。</p>
 <p>我们可以随机的选择先计算哪一颗子树，再运用短路的性质剪枝。我们可以考虑证明这样做的时间复杂度。</p>
 <p>设 $f(d)$ 为一颗深度为 $d$ 的子树结果为 $0$ 的计算次数，$t(d)$ 为结果为 $1$ 的计算次数。</p>
 <p>注意到德·摩根定律：</p>
 <p>$$<br>P \land Q &#x3D; \lnot (\lnot P \lor \lnot Q)<br>$$</p>
-<p>所以 <em>AND</em> 与 <em>OR</em> 本质相同，故不妨假设所有操作都在 <em>OR</em> 上。</p>
+<p>所以 AND 与 OR 本质相同，故不妨假设所有操作都在 OR 上。</p>
 <p>对于 $f(d)$，根据德·摩根（注意取反）有：</p>
 <p>$$<br>f(d) &#x3D; 2 t(d-1)<br>$$</p>
 <p>对于 $t(d)$，当我们只有一个 $1$ 子树的时候最劣：</p>
