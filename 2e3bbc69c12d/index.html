@@ -17,7 +17,7 @@
     <meta name="keywords" content="DeepSeaSpray blog">
 
 
-<title>归档 | DeepSeaSpray&#39;s blog</title>
+<title>CSP-NOIP-2024 集训日记 | DeepSeaSpray&#39;s blog</title>
 
 
 
@@ -165,98 +165,157 @@
     }
 </script>
             <div class="main">
-                <div class="post-wrap archive">
+                <div class="container">
     
     
-        
-
-        
-            <h3>2024</h3>
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/7d5a37c3f4b6/">LGP10777 BZOJ3706 反色刷 题解</a>
-            <span class="archive-item-date">九月 28, 2024</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/461c7b39410e/">LGP4007 小 Y 和恐怖的奴隶主 题解</a>
-            <span class="archive-item-date">九月 28, 2024</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/6f8d38d50391/">LGP6499 [COCI2016-2017#2] Burza 题解</a>
-            <span class="archive-item-date">九月 28, 2024</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/dab9127b6344/">LGP7831 [CCO2021] Travelling Merchant 题解</a>
-            <span class="archive-item-date">九月 28, 2024</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/c6a6554b5ffd/">CF542E Playing on Graph 题解</a>
-            <span class="archive-item-date">九月 24, 2024</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/d88f7bfe3fa3/">CF1993E Xor-Grid Problem 题解</a>
-            <span class="archive-item-date">九月 23, 2024</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/ed48e428b49e/">柯西不等式与带余除法</a>
-            <span class="archive-item-date">九月 8, 2024</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/89fabc740770/">Sequence 孤星 题解</a>
-            <span class="archive-item-date">八月 27, 2024</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/7912e8225d2b/">Count 维什戴尔 题解</a>
-            <span class="archive-item-date">八月 27, 2024</span>
-        </article>
-    
-    
-    <nav class="pagination">
-        <a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
-
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
 </div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">CSP-NOIP-2024 集训日记</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">DeepSeaSpray</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十月 20, 2024&nbsp;&nbsp;19:08:22</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="十月二十四日-星期天"><a href="#十月二十四日-星期天" class="headerlink" title="十月二十四日 星期天"></a>十月二十四日 星期天</h2><p>其实集训已经过去二十天了，一直想写点什么，但是我贫乏的大脑里挤不出任何有意义的文字。</p>
+<p>回家也是疯狂玩游戏，本来想补觉的，反而更晚睡了。睡眠已经缺少到失眠的地步了。</p>
+<p>最后也是连电子产品都不想碰了，浑浑噩噩又回到学校了。</p>
+<p>本来想着周天晚上有 Atcoder 调调状态，然后才发现其实周天根本没有 Atcoder。</p>
+<p>还有一周就要考试了，但已经失去了一切力气和手段。</p>
+<p>今天估计又是摆摆摆。</p>
+<p>唯一有意义的事情可能就是我把口琴带回了学校。</p>
+<p>Linux 的输入法一如既往的难用。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>DeepSeaSpray</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://deepseaspray.github.io/2e3bbc69c12d/">https://deepseaspray.github.io/2e3bbc69c12d/</a></span>
+                    </p>
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/a0528974823a/">Distance 距离 题解</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
             </div>
             <footer id="footer" class="footer">
     <div class="copyright">
