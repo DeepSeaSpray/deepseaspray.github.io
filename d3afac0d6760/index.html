@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DeepSeaSpray">
+
+
+
+    <meta name="description" content="DeepSeaSpray's blog">
+
+
+    <meta name="keywords" content="DeepSeaSpray blog">
+
+
+<title>LGP7093 [CERC2014] Can&#39;t stop playing | DeepSeaSpray&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">DeepSeaSpray&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">DeepSeaSpray&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">LGP7093 [CERC2014] Can&#39;t stop playing</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">DeepSeaSpray</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十月 14, 2024&nbsp;&nbsp;19:06:59</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">洛谷题解</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>原题目资料连接：<a target="_blank" rel="noopener" href="https://cerc.tcs.uj.edu.pl/2014/data.html">Link</a>。</p>
+<p>首先合并肯定是越合越大的，又我们在两头加数，所以一个可行的队列总是单峰的。</p>
+<blockquote>
+<p>形式话的说：</p>
+<p>$a_1 &lt; a_2 &lt; \dots &lt; a_K$</p>
+<p>$a_K &gt; a_{K-1} &gt; \dots &gt; a_n$</p>
+</blockquote>
+<p>那么我们考虑如何表示它。</p>
+<p>对于序列的左边，注意到它是递增的，再根据相同项合并的规则，以及 $a_i &#x3D; 2^p$，我们会发现它是序列总和的二进制拆分。</p>
+<blockquote>
+<p>更具体的，其类似于 <code>2 8 16 32</code> 的形式。</p>
+</blockquote>
+<p>对于序列的右边也是这样的。</p>
+<p>而总和是我们知道的，所以我们只需要左边序列的和即可表示这样一个单峰的合法序列。</p>
+<p>故可以动态规划，设 $f(i,s)$ 表示考虑到第 $i$ 位，左侧序列为 $s$ 是否可以被操作构造出来。</p>
+<p>那么我们每次加入一个数 $a_i$，其能加入左侧序列 $s$ 当且仅当满足下列两个条件之一（$\operatorname{lowbit}$ 表示二进制最低位）：</p>
+<ul>
+<li>$s &#x3D; 0$</li>
+<li>$a_i \leq \operatorname{lowbit}(s)$</li>
+</ul>
+<p>对于右侧序列 $(\sum_{j&#x3D;1}^i a_i) - s$ 同理。</p>
+<p>通过上述方式转移完之后，我们还需要判断一些情况。</p>
+<p>首先对于“峰”即上文所说 $a_K$ 其可以属于左或右两边，需要处理。</p>
+<p>同时两边序列的最高点有可能相同，我们需要判断然后合并。</p>
+<p>答案 $f(n,\sum a)$。</p>
+<p>对于”峰“，实现中我们可以预处理一个数的二进制最高位来解决。</p>
+<p>同时还需要记录转移点和插入在左还是右两个信息，方便最后用递归找答案。</p>
+<p>记得判断 $\sum a_i$ 是否是 $2$ 的幂。</p>
+<p>时间复杂度 $O(n \sum a_i)$。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">1e3</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxs=<span class="number">1</span>&lt;&lt;<span class="number">13</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[maxn<span class="number">+5</span>],sum;</span><br><span class="line"><span class="type">bool</span> f[maxn<span class="number">+5</span>][maxs<span class="number">+5</span>];</span><br><span class="line"><span class="type">char</span> g[maxn<span class="number">+5</span>][maxs<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> to[maxn<span class="number">+5</span>][maxs<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> h[maxs<span class="number">+5</span>];</span><br><span class="line"><span class="type">char</span> str[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">Lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;<span class="keyword">return</span> x&amp;(-x);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">Check</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (s==<span class="number">0</span>)||(x&lt;=<span class="built_in">Lowbit</span>(s));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Print</span><span class="params">(<span class="type">int</span> i,<span class="type">int</span> s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(g[i][s]) str[i]=g[i][s],<span class="built_in">Print</span>(i<span class="number">-1</span>,to[i][s]);</span><br><span class="line">        <span class="keyword">else</span> str[i]=g[i][s],<span class="built_in">Print</span>(i<span class="number">-1</span>,to[i][s]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    sum=<span class="number">0</span>;</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">        sum+=a[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> s=<span class="number">0</span>;s&lt;=sum;s++) f[i][s]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> s=<span class="number">0</span>;s&lt;=sum;s++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!f[i<span class="number">-1</span>][s]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">Check</span>(a[i],s))&#123;</span><br><span class="line">                f[i][s+a[i]]=<span class="number">1</span>;</span><br><span class="line">                g[i][s+a[i]]=<span class="string">&#x27;l&#x27;</span>;</span><br><span class="line">                to[i][s+a[i]]=s;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">Check</span>(a[i],sum-s))&#123;</span><br><span class="line">                f[i][s]=<span class="number">1</span>;</span><br><span class="line">                g[i][s]=<span class="string">&#x27;r&#x27;</span>;</span><br><span class="line">                to[i][s]=s;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        sum+=a[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> s=<span class="number">0</span>;s&lt;=sum;s++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!f[i][s]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(h[s]&lt;h[sum-s])&#123;</span><br><span class="line">                f[i][s+h[sum-s]]=<span class="number">1</span>;</span><br><span class="line">                g[i][s+h[sum-s]]=g[i][s];</span><br><span class="line">                to[i][s+h[sum-s]]=to[i][s];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(h[s]&gt;h[sum-s])&#123;</span><br><span class="line">                f[i][s-h[s]]=<span class="number">1</span>;</span><br><span class="line">                g[i][s-h[s]]=g[i][s];</span><br><span class="line">                to[i][s-h[s]]=to[i][s];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(h[s]==h[sum-s])&#123;</span><br><span class="line">                f[i][s]=<span class="number">0</span>;</span><br><span class="line">                f[i][s+h[s]]=<span class="number">1</span>;</span><br><span class="line">                f[i][s-h[s]]=<span class="number">1</span>;</span><br><span class="line">                g[i][s+h[s]]=g[i][s];</span><br><span class="line">                g[i][s-h[s]]=g[i][s];</span><br><span class="line">                to[i][s+h[s]]=to[i][s];</span><br><span class="line">                to[i][s-h[s]]=to[i][s];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> tmp;<span class="keyword">for</span>(tmp=sum;!(tmp&amp;<span class="number">1</span>);tmp&gt;&gt;=<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(tmp==<span class="number">1</span>&amp;&amp;f[n][sum])&#123;</span><br><span class="line">        <span class="built_in">Print</span>(n,sum);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">putchar</span>(str[i]);</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;no&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> s=<span class="number">0</span>;s&lt;=maxs;s++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">Lowbit</span>(s)==s) h[s]=s;</span><br><span class="line">        <span class="keyword">else</span> h[s]=h[s&gt;&gt;<span class="number">1</span>]&lt;&lt;<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">Init</span>();</span><br><span class="line">    <span class="type">int</span> T;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--) <span class="built_in">Solve</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>DeepSeaSpray</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://deepseaspray.github.io/d3afac0d6760/">https://deepseaspray.github.io/d3afac0d6760/</a></span>
+                    </p>
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/"># 动态规划-状态压缩</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/a0528974823a/">Distance 距离 题解</a>
+            
+            
+            <a class="next" rel="next" href="/910e35feabd9/">Tree 连通子树与树的重心 题解</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DeepSeaSpray | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
