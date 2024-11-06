@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DeepSeaSpray">
+
+
+
+    <meta name="description" content="DeepSeaSpray's blog">
+
+
+    <meta name="keywords" content="DeepSeaSpray blog">
+
+
+<title>CF542E Playing on Graph | DeepSeaSpray&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">DeepSeaSpray&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">DeepSeaSpray&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">CF542E Playing on Graph</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">DeepSeaSpray</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">九月 24, 2024&nbsp;&nbsp;9:03:04</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/CodeForces-%E9%A2%98%E8%A7%A3/">CodeForces 题解</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>首先我们无法将三角形变成一条链，而一个奇环操作之后将减少两个点最后变成三角形，所以有奇环则无法变成一条链。</p>
+<p>对于一个无奇环的图，它一定是一个二分图。我们考虑对于每一个联通子块，以一个点为根生成BFS树。由于是二分图，同一层的节点都在同一部，互相没有连边，所以可以全部缩在一起，这样我们可以得到以这个点为起点可以生成的最长链。</p>
+<p>那么一个联通子块的最长链就是这个子块的直径。</p>
+<p>所以最后的答案就是所有联通子块的直径和。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">1e3</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxm=<span class="number">2e5</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;<span class="type">int</span> u,v,nxt;&#125;;</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="type">int</span> hd[maxn<span class="number">+5</span>],et;</span><br><span class="line">Edge e[maxm<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> tot;</span><br><span class="line"><span class="type">int</span> dis[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> col[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> res[maxn<span class="number">+5</span>];</span><br><span class="line">queue&lt;<span class="type">int</span>&gt; qu;</span><br><span class="line"><span class="type">int</span> ans;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Adde</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">    e[et].u=u,e[et].v=v,e[et].nxt=hd[u],hd[u]=et++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Bfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> v,tmp=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">memset</span>(dis,<span class="number">-1</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">    <span class="keyword">while</span>(qu.<span class="built_in">size</span>()) qu.<span class="built_in">pop</span>();</span><br><span class="line">    qu.<span class="built_in">push</span>(u);</span><br><span class="line">    dis[u]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(qu.<span class="built_in">size</span>())&#123;</span><br><span class="line">        u=qu.<span class="built_in">front</span>();</span><br><span class="line">        qu.<span class="built_in">pop</span>();</span><br><span class="line">        tmp=<span class="built_in">max</span>(tmp,dis[u]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=hd[u];~i;i=e[i].nxt)&#123;</span><br><span class="line">            v=e[i].v;</span><br><span class="line">            <span class="keyword">if</span>(~dis[v]) <span class="keyword">continue</span>;</span><br><span class="line">            dis[v]=dis[u]<span class="number">+1</span>;</span><br><span class="line">            <span class="keyword">if</span>(~col[v])&#123;</span><br><span class="line">                <span class="keyword">if</span>(col[v]==col[u])&#123;</span><br><span class="line">                    <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>);</span><br><span class="line">                    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> col[v]=col[u]^<span class="number">1</span>;</span><br><span class="line">            qu.<span class="built_in">push</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    res[col[u]&gt;&gt;<span class="number">1</span>]=<span class="built_in">max</span>(res[col[u]&gt;&gt;<span class="number">1</span>],tmp);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> u,v;</span><br><span class="line">    <span class="built_in">memset</span>(hd,<span class="number">-1</span>,<span class="built_in">sizeof</span>(hd));</span><br><span class="line">    <span class="built_in">memset</span>(col,<span class="number">-1</span>,<span class="built_in">sizeof</span>(col));</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v);</span><br><span class="line">        <span class="built_in">Adde</span>(u,v),<span class="built_in">Adde</span>(v,u);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!(~col[i])) col[i]=tot,tot+=<span class="number">2</span>;</span><br><span class="line">        <span class="built_in">Bfs</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=(tot&gt;&gt;<span class="number">1</span>);i++) ans+=res[i];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>DeepSeaSpray</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://deepseaspray.github.io/8d92f71a0089/">https://deepseaspray.github.io/8d92f71a0089/</a></span>
+                    </p>
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%9B%BE%E8%AE%BA-%E4%BA%8C%E5%88%86%E5%9B%BE/"># 图论-二分图</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/0cad17b027c7/">LGP7831 [CCO2021] Travelling Merchant</a>
+            
+            
+            <a class="next" rel="next" href="/2e642b0902fe/">CF1993E Xor-Grid Problem</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DeepSeaSpray | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

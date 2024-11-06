@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DeepSeaSpray">
+
+
+
+    <meta name="description" content="DeepSeaSpray's blog">
+
+
+    <meta name="keywords" content="DeepSeaSpray blog">
+
+
+<title>LGP10746 [SEERC2020] Codenames | DeepSeaSpray&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">DeepSeaSpray&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">DeepSeaSpray&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">LGP10746 [SEERC2020] Codenames</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">DeepSeaSpray</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十月 4, 2024&nbsp;&nbsp;21:50:38</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">洛谷题解</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>不太理解题意的可以上 CodeForces 看原版英文题面：<a target="_blank" rel="noopener" href="https://codeforces.com/gym/103102/problem/K">Link</a> 。</p>
+<p>上面也有英文原版题解。</p>
+<p>首先我们直接令 $g &#x3D; 9$ 即可，因为 <code>r</code> 最多只有 $9$ 个，而翻完就会自动停止。</p>
+<p>接着我们考虑转化一下问题。</p>
+<p>首先我们必须翻出所有的 <code>r</code>，并且不能翻出其他的小写字母，对于大写字母翻了也没事。</p>
+<p>那么我们可以考虑转化成一个字符串匹配的问题。</p>
+<p>对于输入的字符串，我们将它们的所有前缀（取前缀是因为可能翻到某一步就停止了）作为文本串。并将一个字母对应的位置设成 <code>1</code>，其余的设成 <code>0</code>，<code>z</code> 不做处理。</p>
+<p>例如：<code>azcex</code> 对应 <code>1010100000000000000000010</code>。</p>
+<p>对于输入的表格，我们将它们作为模式串。具体来说，<code>r</code> 对应 <code>1</code>，其余小写字母对应 <code>0</code>，大写字母对应通配符 <code>?</code>。</p>
+<p>例如：<code>rnnnB rnBBb nrBrr RBBrR rxnnb</code> 对应：<code>1000?10??001?11???1?10000</code>。</p>
+<p>我们的任务是对于每一个模式串找到与之匹配的文本串。</p>
+<p>我们考虑这一件事情，设 $cnt_0$，$cnt_1$，$cnt_q$ 分别表示 模式串中为 <code>0</code>，<code>1</code>，<code>?</code> 的数量。</p>
+<p>由于平均值原理：</p>
+<p>$$<br>\min(cnt_0,cnt_1,cnt_q) \leq \frac{cnt_0+cnt_1+cnt_q}{3} &#x3D; \frac{25}{3} \leq 9<br>$$</p>
+<p>所以如果我们有分别与 $cnt_0$，$cnt_1$，$cnt_q$ 相关的算法，我们就可以在较优秀的时间复杂度内解决问题。</p>
+<h2 id="与-cnt-q-相关"><a href="#与-cnt-q-相关" class="headerlink" title="与 $cnt_q$ 相关"></a>与 $cnt_q$ 相关</h2><p>暴力枚举通配符的取值即可。实现上可以用枚举子集简单实现。</p>
+<p>单词操作时间复杂度 $O(2^9)$。</p>
+<h2 id="与-cnt-1-相关"><a href="#与-cnt-1-相关" class="headerlink" title="与 $cnt_1$ 相关"></a>与 $cnt_1$ 相关</h2><p>我们考虑如何数出一个模式串的与之匹配的文本串。</p>
+<p>对于通配符我们并不好处理，由于文本串实际上是二进制数，这启发我们使用高维前缀和，直接令通配符取值 <code>1</code>。</p>
+<p>但是这样我们模式串中要求为 <code>1</code> 的位就无法达成限制，所以我们考虑组合-容斥掉这一部分。</p>
+<p>具体来说，我们把一些为 <code>1</code> 的位设成 <code>0</code>，设这样的位有 $t$ 个，那么组合-容斥系数即为 $(-1)^t$。</p>
+<p>组合-容斥可以用枚举子集简单实现。</p>
+<p>如果存在这样的文本串，我们还需要考虑如何求出这一个文本串。</p>
+<p>我们对于每一个 <code>?</code> 先将其设为 <code>0</code> 计算对应文本串个数，如果存在，那么这一位填 <code>0</code>，否则这一位填 <code>1</code>。</p>
+<p>这一部分可以用 Lowbit 简单实现。</p>
+<p>单次操作时间复杂度 $O(18 \times 2^9)$</p>
+<h2 id="与-cnt-0-相关"><a href="#与-cnt-0-相关" class="headerlink" title="与 $cnt_0$ 相关"></a>与 $cnt_0$ 相关</h2><p>与 $cnt_1$ 的部分本质相同，各位可以自行思考，我将修改过的部分写在下面。</p>
+<p>我们使用高维<strong>后缀</strong>和，直接令通配符取值 <code>0</code>。</p>
+<p>组合-容斥掉要求为 <code>0</code> 的部分。</p>
+<p>我们把一些为 <code>0</code> 的位设成 <code>1</code>，设这样的位有 $t$ 个，那么组合-容斥系数即为 $(-1)^t$。</p>
+<p>如果存在这样的文本串，我们还需要考虑如何求出这一个文本串。</p>
+<p>我们对于每一个 <code>?</code> 先将其设为 <code>1</code> 计算对应文本串个数，如果存在，那么这一位填 <code>1</code>，否则这一位填 <code>0</code>。</p>
+<p>其中高维前缀和预处理时间复杂度是 $O(2^{25})$ 的，常数优秀，可以通过本题。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">1e5</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxm=<span class="number">30</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxk=<span class="number">25</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxs=<span class="number">1</span>&lt;&lt;maxk;</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="type">char</span> str[maxn<span class="number">+5</span>][maxm<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> id[maxs<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> f[maxs<span class="number">+5</span>],g[maxs<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> tmpq,tmp0,tmp1;</span><br><span class="line"><span class="type">int</span> cntq,cnt0,cnt1;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">char</span> <span class="title">Getch</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span>(!((<span class="string">&#x27;a&#x27;</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">&#x27;z&#x27;</span>)||(<span class="string">&#x27;A&#x27;</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">&#x27;Z&#x27;</span>)))</span><br><span class="line">        ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> ch;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">Lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;<span class="keyword">return</span> x&amp;(-x);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">Count0</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> s=tmp0;;s=(s<span class="number">-1</span>)&amp;tmp0)&#123;</span><br><span class="line">        <span class="keyword">if</span>(__builtin_popcount(s)&amp;<span class="number">1</span>) res-=g[s|tmp1|tmpq];</span><br><span class="line">        <span class="keyword">else</span> res+=g[s|tmp1|tmpq];</span><br><span class="line">        <span class="keyword">if</span>(!s) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">Count1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> s=tmp1;;s=(s<span class="number">-1</span>)&amp;tmp1)&#123;</span><br><span class="line">        <span class="keyword">if</span>((cnt1-__builtin_popcount(s))&amp;<span class="number">1</span>) res-=f[s|tmpq];</span><br><span class="line">        <span class="keyword">else</span> res+=f[s|tmpq];</span><br><span class="line">        <span class="keyword">if</span>(!s) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//    freopen(&quot;data.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//    freopen(&quot;data.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="type">int</span> len,tmp;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,str[i]);</span><br><span class="line">        len=<span class="built_in">strlen</span>(str[i]),tmp=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;len;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(str[i][j]!=<span class="string">&#x27;z&#x27;</span>)&#123;</span><br><span class="line">                tmp|=<span class="number">1</span>&lt;&lt;(str[i][j]-<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">                id[tmp]=i;</span><br><span class="line">                f[tmp]++,g[tmp]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;maxk;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;maxs;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>((j&gt;&gt;i)&amp;<span class="number">1</span>) f[j]+=f[j^(<span class="number">1</span>&lt;&lt;i)];</span><br><span class="line">            <span class="keyword">else</span> g[j]+=g[j^(<span class="number">1</span>&lt;&lt;i)];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> ch;</span><br><span class="line">    <span class="type">int</span> res;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;m);</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        tmpq=tmp0=tmp1=<span class="number">0</span>;</span><br><span class="line">        cntq=cnt0=cnt1=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;maxk;i++)&#123;</span><br><span class="line">            ch=<span class="built_in">Getch</span>();</span><br><span class="line">            <span class="keyword">if</span>(<span class="string">&#x27;A&#x27;</span>&lt;=ch&amp;&amp;ch&lt;=<span class="string">&#x27;Z&#x27;</span>) tmpq|=<span class="number">1</span>&lt;&lt;i,cntq++;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(ch==<span class="string">&#x27;r&#x27;</span>) tmp1|=<span class="number">1</span>&lt;&lt;i,cnt1++;</span><br><span class="line">            <span class="keyword">else</span> tmp0|=<span class="number">1</span>&lt;&lt;i,cnt0++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt0==<span class="built_in">min</span>(&#123;cnt0,cnt1,cntq&#125;))&#123;</span><br><span class="line">            <span class="type">int</span> s=tmpq;tmpq=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">Count0</span>())&#123;</span><br><span class="line">                <span class="keyword">for</span>(;s;s-=<span class="built_in">Lowbit</span>(s))&#123;</span><br><span class="line">                    tmpq+=<span class="built_in">Lowbit</span>(s);</span><br><span class="line">                    <span class="keyword">if</span>(!<span class="built_in">Count0</span>()) tmpq-=<span class="built_in">Lowbit</span>(s);</span><br><span class="line">                &#125;</span><br><span class="line">                res=tmp1|tmpq;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> res=<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(cnt1==<span class="built_in">min</span>(&#123;cnt0,cnt1,cntq&#125;))&#123;</span><br><span class="line">            <span class="type">int</span> s=tmpq;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">Count1</span>())&#123;</span><br><span class="line">                <span class="keyword">for</span>(;s;s-=<span class="built_in">Lowbit</span>(s))&#123;</span><br><span class="line">                    tmpq-=<span class="built_in">Lowbit</span>(s);</span><br><span class="line">                    <span class="keyword">if</span>(!<span class="built_in">Count1</span>()) tmpq+=<span class="built_in">Lowbit</span>(s);</span><br><span class="line">                &#125;</span><br><span class="line">                res=tmp1|tmpq;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> res=<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            res=<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> s=tmpq;;s=(s<span class="number">-1</span>)&amp;tmpq)&#123;</span><br><span class="line">                <span class="keyword">if</span>(id[tmp1|s]) res=tmp1|s;</span><br><span class="line">                <span class="keyword">if</span>(!s) <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(~res) <span class="built_in">printf</span>(<span class="string">&quot;%s 9\n&quot;</span>,str[id[res]]);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;IMPOSSIBLE&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>DeepSeaSpray</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://deepseaspray.github.io/ab594cf79707/">https://deepseaspray.github.io/ab594cf79707/</a></span>
+                    </p>
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%BB%84%E5%90%88-%E5%AE%B9%E6%96%A5%E5%8E%9F%E7%90%86/"># 组合-容斥原理</a>
+                    
+                        <a href="/tags/%E9%AB%98%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C/"># 高维前缀和</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2f05279a8d8d/">LGP3042 [USACO12JAN] Cow Run G</a>
+            
+            
+            <a class="next" rel="next" href="/d4242d2cc7e9/">LGP7202 [COCI2019-2020#1] Trobojnica</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DeepSeaSpray | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

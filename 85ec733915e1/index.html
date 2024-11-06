@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DeepSeaSpray">
+
+
+
+    <meta name="description" content="DeepSeaSpray's blog">
+
+
+    <meta name="keywords" content="DeepSeaSpray blog">
+
+
+<title>LGP3251 [JLOI2012] 时间流逝 | DeepSeaSpray&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">DeepSeaSpray&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">DeepSeaSpray&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">LGP3251 [JLOI2012] 时间流逝</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">DeepSeaSpray</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十月 8, 2024&nbsp;&nbsp;20:57:14</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">洛谷题解</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h2><p>有一个数集 $A$。</p>
+<p>维护一个可重集 $S$，若集合不为空，每天有 $p$ 的概率去掉最小值。剩下的 $1-p$ 的概率中，等概率的添加 $A$ 中小于 $S$ 的所有元素的一个元素。</p>
+<p>当集合中所有的元素之和<strong>大于</strong> $T$ 时进化成强大模式。</p>
+<p>求进化的期望天数。</p>
+<h2 id="题目解法"><a href="#题目解法" class="headerlink" title="题目解法"></a>题目解法</h2><p>我们设 $f(S)$ 为当前集合期望的进化天数。</p>
+<p>$$<br>f(S) &#x3D; p f(P) + \frac{1-p}{m} \sum_{i&#x3D;1}^m f(T) + 1<br>$$</p>
+<p>其中 $P$ 表示 $S$ 去掉最小值后的集合，$T$ 表示 $S$ 加上一个元素后的集合，即题目中说的两种操作所对应的集合。</p>
+<p>我们可以发现 $T$ 去掉其最小值后为 $S$。</p>
+<p>所以这构成了一颗树的形式，其中叶子节点即已经进化了的集合，根节点即空集。</p>
+<p>考虑消除后效性，运用数学归纳法，假设对于所有的节点都有 $f(S) &#x3D; k f(P) + b$。</p>
+<p>归纳奠基，对于叶子节点，可令 $k &#x3D; b &#x3D; 0$，显然成立。</p>
+<p>对于一个非叶子节点：</p>
+<p>$$<br>f(S) &#x3D; p f(P) + \frac{1-p}{m} \sum_{i&#x3D;1}^m k_i f(S) + b_i + 1<br>$$</p>
+<p>记：</p>
+<p>$$<br>t &#x3D; \frac{1-p}{m},\ K &#x3D; \sum_{i&#x3D;1}^m k_i,\ B &#x3D; \sum_{i&#x3D;1}^m b_i<br>$$</p>
+<p>有：</p>
+<p>$$<br>f(S) &#x3D; \frac{p}{1 - t K} f(P) + \frac{1 + t B}{1 - t K}<br>$$</p>
+<p>即证。</p>
+<p>当 $S$ 为空集的时候 $f(S)$ 就是我们要求的答案，然而此时 $f(P) &#x3D; 0$ 故只需求 $\varnothing$ 处的 $b$ 即可。</p>
+<p>我们递归处理即可。</p>
+<p>值得注意的是，我们可以只用集合元素之和与集合元素最小值来描述集合，另当 $S &#x3D; \varnothing$ 时应令 $t &#x3D; \frac{1}{m}$。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">50</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> P pair<span class="string">&lt;double,double&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fir first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> sec second</span></span><br><span class="line"><span class="type">double</span> p;</span><br><span class="line"><span class="type">int</span> T,n;</span><br><span class="line"><span class="type">int</span> a[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="function">P <span class="title">Dfs</span><span class="params">(<span class="type">int</span> sm,<span class="type">int</span> mn)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sm&gt;T) <span class="keyword">return</span> <span class="built_in">P</span>(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="type">double</span> k=<span class="number">0</span>,b=<span class="number">0</span>;P tmp;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=mn;i++)&#123;</span><br><span class="line">            tmp=<span class="built_in">Dfs</span>(sm+a[i],i);</span><br><span class="line">            k+=tmp.fir,b+=tmp.sec;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="type">double</span> t;</span><br><span class="line">        <span class="keyword">if</span>(sm) t=(<span class="number">1</span>-p)/mn;</span><br><span class="line">        <span class="keyword">else</span> t=<span class="number">1.0</span>/mn;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">P</span>(p/(<span class="number">1</span>-t*k),(<span class="number">1</span>+t*b)/(<span class="number">1</span>-t*k));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%lf%d%d&quot;</span>,&amp;p,&amp;T,&amp;n)!=EOF)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">        <span class="built_in">sort</span>(a<span class="number">+1</span>,a+n<span class="number">+1</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%.3lf\n&quot;</span>,<span class="built_in">Dfs</span>(<span class="number">0</span>,n).sec);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>DeepSeaSpray</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://deepseaspray.github.io/85ec733915e1/">https://deepseaspray.github.io/85ec733915e1/</a></span>
+                    </p>
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/"># 动态规划-记忆化搜索</a>
+                    
+                        <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95/"># 数学归纳法</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/ca72c23b82f5/">LGP9131 [USACO23FEB] Problem Setting P</a>
+            
+            
+            <a class="next" rel="next" href="/2f05279a8d8d/">LGP3042 [USACO12JAN] Cow Run G</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DeepSeaSpray | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
