@@ -28,7 +28,7 @@
       
         
         
-    <summary type="html">&lt;p&gt;首先我们可以把攻击范围改成 $x &#92;in [x_0,x_0 + 2k], y &#92;in [y_0,y_0 + 2k], z &#92;in [z_0,z_0 +</summary>
+    <summary type="html">&lt;p&gt;首先我们可以把攻击范围改成 $x &#92;in [x_0,x_0 + 2k], y &#92;in [y_0,y_0 + 2k], z &#92;in [z_0,z_0 + 2k]$</summary>
         
       
     
@@ -53,7 +53,7 @@
         
     <summary type="html">&lt;p&gt;首先最小拓扑序可以在拓扑排序的基础上将队列改成小根堆求出。&lt;/p&gt;
 &lt;p&gt;如何使得最小拓扑序变大？&lt;/p&gt;
-&lt;p&gt;我们在拓扑排序的某一时刻，此时当前所有入度为 $0$</summary>
+&lt;p&gt;我们在拓扑排序的某一时刻，此时当前所有入度为 $0$ 的点处于小根堆中</summary>
         
       
     
@@ -78,7 +78,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;十月二十四日-星期天&quot;&gt;&lt;a href=&quot;#十月二十四日-星期天&quot; class=&quot;headerlink&quot; title=&quot;十月二十四日 星期天&quot;&gt;&lt;/a&gt;十月二十四日</summary>
+    <summary type="html">&lt;h2 id=&quot;十月二十四日-星期天&quot;&gt;&lt;a href=&quot;#十月二十四日-星期天&quot; class=&quot;headerlink&quot; title=&quot;十月二十四日 星期天&quot;&gt;&lt;/a&gt;十月二十四日 星期天&lt;/h2&gt;&lt;</summary>
         
       
     
@@ -104,7 +104,9 @@
         
         
     <summary type="html">&lt;p&gt;考虑一个经典结论：&lt;/p&gt;
-&lt;p&gt;$$&lt;br&gt;a + b &amp;#x3D; &#92;min(a,b) +</summary>
+&lt;p&gt;$$&lt;br&gt;a + b &amp;#x3D; &#92;min(a,b) + &#92;max(a,b)&lt;br&gt;$$&lt;/p&gt;
+&lt;p&gt;所以：&lt;/p&gt;
+&lt;p&gt;$$&lt;br&gt;&#92;min(|a_i</summary>
         
       
     
@@ -133,7 +135,7 @@
       
         
         
-    <summary type="html">&lt;p&gt;原题目资料连接：&lt;a</summary>
+    <summary type="html">&lt;p&gt;原题目资料连接：&lt;a href=&quot;https://cerc.tcs.uj.edu.pl/2014/data.html&quot;&gt;Link&lt;/a&gt;</summary>
         
       
     
@@ -159,7 +161,8 @@
         
         
     <summary type="html">&lt;p&gt;首先找出原树的重心。&lt;/p&gt;
-&lt;p&gt;考虑重心的性质，有：以其为根的重构树中，每一个子树大小都不超过</summary>
+&lt;p&gt;考虑重心的性质，有：以其为根的重构树中，每一个子树大小都不超过 $&#92;frac{n}{2}$，那么其为重心。&lt;/p&gt;
+&lt;p&gt;又重心有一个或者两个，可以分类讨论</summary>
         
       
     
@@ -187,8 +190,7 @@
         
         
     <summary type="html">&lt;p&gt;考虑动态规划：$f(i)$ 表示有 $i$ 个顾客购买一血气球，实质上是背包。&lt;/p&gt;
-&lt;p&gt;我们使用退背包，对于修改，先退出，再加入即可。&lt;/p&gt;
-&lt;p&gt;我们发现 $C$</summary>
+&lt;p&gt;我们使用退背包，对于修改，先退出，再加入即可</summary>
         
       
     
@@ -213,7 +215,7 @@
       
         
         
-    <summary type="html">&lt;p&gt;考虑动态规划：$f(i,j,k)$ 表示填了 $i$ 位，&lt;code&gt;SOS&lt;/code&gt; 共 $j$ 个，&lt;code&gt;SOS&lt;/code&gt; 填了 $k &amp;#x3D; 0,1,2$</summary>
+    <summary type="html">&lt;p&gt;考虑动态规划：$f(i,j,k)$ 表示填了 $i$ 位，&lt;code&gt;SOS&lt;/code&gt; 共 $j$ 个，&lt;code&gt;SOS&lt;/code&gt; 填了 $k &amp;#x3D; 0,1,2$ 位的方案数</summary>
         
       
     
@@ -238,9 +240,7 @@
       
         
         
-    <summary type="html">&lt;p&gt;可以类似背包用 Bitset 做到 $O(&#92;frac{nV}{&#92;omega})$。&lt;/p&gt;
-&lt;p&gt;当然对于表达式问题变形加桶是更常用的方法：&lt;/p&gt;
-&lt;p&gt;$$&lt;br&gt;a_x + a_y +</summary>
+    <summary type="html">&lt;p&gt;可以类似背包用 Bitset 做到 $O(&#92;frac{nV}{&#92;omega})$</summary>
         
       
     
@@ -265,7 +265,7 @@
       
         
         
-    <summary type="html">&lt;p&gt;首先当模数比较小的时候线段树上可以维护 $f(i)$ 表示 $x&amp;#x3D;i$</summary>
+    <summary type="html">&lt;p&gt;首先当模数比较小的时候线段树上可以维护 $f(i)$ 表示 $x&amp;#x3D;i$ 经过该区间内的运算之后得到的值，这样子我们就可以用线段树维护单点修改和查询了</summary>
         
       
     
@@ -293,8 +293,7 @@
         
         
     <summary type="html">&lt;p&gt;我们考虑如何每一个字符串用唯一的方式表示。&lt;/p&gt;
-&lt;p&gt;不难想到可以将该字符串分成一个最长的前缀和一个后缀。&lt;/p&gt;
-&lt;p&gt;我们将所有字符串插入 Trie</summary>
+&lt;p&gt;不难想到可以将该字符串分成一个最长的前缀和一个后缀</summary>
         
       
     
@@ -320,9 +319,7 @@
         
         
     <summary type="html">&lt;p&gt;首先进行字符串哈希（注意卡常）。&lt;/p&gt;
-&lt;p&gt;然后考虑一个字符串对怎么样的区间进行贡献，是一个二维前缀和问题。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;$L &#92;in [1,l],&#92; R &#92;in</summary>
+&lt;p&gt;然后考虑一个字符串对怎么样的区间进行贡献，是一个二维前缀和问题</summary>
         
       
     
@@ -348,8 +345,7 @@
         
         
     <summary type="html">&lt;p&gt;高精度按题意递归模拟。&lt;/p&gt;
-&lt;p&gt;考虑更优雅的实现，由于我们需要读入十进制在提取二进制，我们可以考虑将数字用多个 Int 来分段存储。&lt;/p&gt;
-&lt;p&gt;同时注意到数字只有不到 $600$</summary>
+&lt;p&gt;考虑更优雅的实现，由于我们需要读入十进制在提取二进制，我们可以考虑将数字用多个 Int 来分段存储</summary>
         
       
     
@@ -374,8 +370,7 @@
       
         
         
-    <summary type="html">&lt;p&gt;把每道题的 &lt;code&gt;H&lt;/code&gt; 当作一个集合，那么合法的选定题目的顺序要求前面的题目是后面的题目的子集。&lt;/p&gt;
-&lt;p&gt;考虑动态规划，设 $f(S)$ 表示最后选定的题目集合是</summary>
+    <summary type="html">&lt;p&gt;把每道题的 &lt;code&gt;H&lt;/code&gt; 当作一个集合，那么合法的选定题目的顺序要求前面的题目是后面的题目的子集</summary>
         
       
     
@@ -404,7 +399,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a href=&quot;#题目大意&quot; class=&quot;headerlink&quot; title=&quot;题目大意&quot;&gt;&lt;/a&gt;题目大意&lt;/h2&gt;&lt;p&gt;有一个数集</summary>
+    <summary type="html">&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a href=&quot;#题目大意&quot; class=&quot;headerlink&quot; title=&quot;题目大意&quot;&gt;&lt;/a&gt;题目大意&lt;/h2&gt;&lt;p&gt;有一个数集 $A$</summary>
         
       
     
@@ -416,420 +411,6 @@
     <category term="动态规划-记忆化搜索" scheme="https://deepseaspray.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/"/>
     
     <category term="数学归纳法" scheme="https://deepseaspray.github.io/tags/%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LGP3042 [USACO12JAN] Cow Run G</title>
-    <link href="https://deepseaspray.github.io/2f05279a8d8d/"/>
-    <id>https://deepseaspray.github.io/2f05279a8d8d/</id>
-    <published>2024-10-05T01:54:50.000Z</published>
-    <updated>2024-11-06T07:08:52.788Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;官方题解：&lt;a href=&quot;https://usaco.org/current/data/sol_cowrun.html&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;首先考虑暴力，具体来说可以从 SG</summary>
-        
-      
-    
-    
-    
-    <category term="洛谷题解" scheme="https://deepseaspray.github.io/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="组合-博弈论-SG函数" scheme="https://deepseaspray.github.io/tags/%E7%BB%84%E5%90%88-%E5%8D%9A%E5%BC%88%E8%AE%BA-SG%E5%87%BD%E6%95%B0/"/>
-    
-    <category term="深度优先搜索-剪枝" scheme="https://deepseaspray.github.io/tags/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-%E5%89%AA%E6%9E%9D/"/>
-    
-    <category term="时间复杂度分析" scheme="https://deepseaspray.github.io/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/"/>
-    
-    <category term="实现-逻辑运算短路" scheme="https://deepseaspray.github.io/tags/%E5%AE%9E%E7%8E%B0-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%9F%AD%E8%B7%AF/"/>
-    
-    <category term="随机化" scheme="https://deepseaspray.github.io/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LGP10746 [SEERC2020] Codenames</title>
-    <link href="https://deepseaspray.github.io/ab594cf79707/"/>
-    <id>https://deepseaspray.github.io/ab594cf79707/</id>
-    <published>2024-10-04T13:50:38.000Z</published>
-    <updated>2024-11-06T07:09:24.542Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;不太理解题意的可以上 CodeForces 看原版英文题面：&lt;a href=&quot;https://codeforces.com/gym/103102/problem/K&quot;&gt;Link&lt;/a&gt;</summary>
-        
-      
-    
-    
-    
-    <category term="洛谷题解" scheme="https://deepseaspray.github.io/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="组合-容斥原理" scheme="https://deepseaspray.github.io/tags/%E7%BB%84%E5%90%88-%E5%AE%B9%E6%96%A5%E5%8E%9F%E7%90%86/"/>
-    
-    <category term="高维前缀和" scheme="https://deepseaspray.github.io/tags/%E9%AB%98%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LGP7202 [COCI2019-2020#1] Trobojnica</title>
-    <link href="https://deepseaspray.github.io/d4242d2cc7e9/"/>
-    <id>https://deepseaspray.github.io/d4242d2cc7e9/</id>
-    <published>2024-09-29T03:09:49.000Z</published>
-    <updated>2024-11-06T07:09:13.509Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;参考了各路题解。&lt;/p&gt;
-&lt;p&gt;首先如果一个多边形全部都是一种颜色显然无法分割。&lt;/p&gt;
-&lt;p&gt;又，我们注意到 $1 &#92;oplus 2 &#92;oplus 3 &amp;#x3D;</summary>
-        
-      
-    
-    
-    
-    <category term="洛谷题解" scheme="https://deepseaspray.github.io/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Game 游戏</title>
-    <link href="https://deepseaspray.github.io/f120ee3d6f8a/"/>
-    <id>https://deepseaspray.github.io/f120ee3d6f8a/</id>
-    <published>2024-09-29T00:59:24.000Z</published>
-    <updated>2024-11-06T07:07:33.413Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;源自 &lt;code&gt;IMO2012 D1T3&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&quot;题面&quot;&gt;&lt;a href=&quot;#题面&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="数学" scheme="https://deepseaspray.github.io/categories/%E6%95%B0%E5%AD%A6/"/>
-    
-    
-    <category term="组合-博弈论" scheme="https://deepseaspray.github.io/tags/%E7%BB%84%E5%90%88-%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
-    
-    <category term="交互题" scheme="https://deepseaspray.github.io/tags/%E4%BA%A4%E4%BA%92%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LGP9212 「蓬莱人形」</title>
-    <link href="https://deepseaspray.github.io/241b31eaad23/"/>
-    <id>https://deepseaspray.github.io/241b31eaad23/</id>
-    <published>2024-09-28T09:32:30.000Z</published>
-    <updated>2024-11-06T07:09:21.693Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;对于每一个询问，先对 $x$，$y$，$a_i$ 取模。&lt;/p&gt;
-&lt;p&gt;然后对 $x$，$y$ 分类讨论：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;$x &amp;#x3D; y$ 答案为</summary>
-        
-      
-    
-    
-    
-    <category term="洛谷题解" scheme="https://deepseaspray.github.io/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="技巧-平衡时间复杂度" scheme="https://deepseaspray.github.io/tags/%E6%8A%80%E5%B7%A7-%E5%B9%B3%E8%A1%A1%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/"/>
-    
-    <category term="数据结构-分块" scheme="https://deepseaspray.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%88%86%E5%9D%97/"/>
-    
-    <category term="根号分治" scheme="https://deepseaspray.github.io/tags/%E6%A0%B9%E5%8F%B7%E5%88%86%E6%B2%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LGP4559 [JSOI2018] 列队</title>
-    <link href="https://deepseaspray.github.io/cc509cf0a511/"/>
-    <id>https://deepseaspray.github.io/cc509cf0a511/</id>
-    <published>2024-09-28T09:02:07.000Z</published>
-    <updated>2024-11-06T07:09:01.047Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;首先，对于一些同学，他们集合的顺序即为他们原来的顺序一定不劣。&lt;/p&gt;
-&lt;p&gt;每一个同学跑动距离：$| K+rk_i-1-a_i</summary>
-        
-      
-    
-    
-    
-    <category term="洛谷题解" scheme="https://deepseaspray.github.io/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="数据结构-可持久化线段树" scheme="https://deepseaspray.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LGP10777 BZOJ3706 反色刷</title>
-    <link href="https://deepseaspray.github.io/389b0cd92e01/"/>
-    <id>https://deepseaspray.github.io/389b0cd92e01/</id>
-    <published>2024-09-28T08:37:35.000Z</published>
-    <updated>2024-11-06T07:09:31.264Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;对于一个连通块，如果不存在黑边度数为奇数的点，那么一定可以把所有边都刷成白色。&lt;/p&gt;
-&lt;p&gt;证明，我们提出所有的黑边，构成一些连通块，这些点的度数都是偶数，通过欧拉回路即证。&lt;/p&gt;
-&lt;p&gt;接</summary>
-        
-      
-    
-    
-    
-    <category term="洛谷题解" scheme="https://deepseaspray.github.io/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="图论" scheme="https://deepseaspray.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LGP4007 小 Y 和恐怖的奴隶主</title>
-    <link href="https://deepseaspray.github.io/1ca95cd888d2/"/>
-    <id>https://deepseaspray.github.io/1ca95cd888d2/</id>
-    <published>2024-09-28T08:03:38.000Z</published>
-    <updated>2024-11-06T07:08:58.276Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;考虑DP，首先是期望逆推，这样不用折算概率。&lt;/p&gt;
-&lt;p&gt;设 $f(i,a,b,c)$ 表示砍了 $i$ 刀，$a$ 个一血奴隶主，$b$ 个二血奴隶主，$c$</summary>
-        
-      
-    
-    
-    
-    <category term="洛谷题解" scheme="https://deepseaspray.github.io/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="动态规划-矩阵优化" scheme="https://deepseaspray.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E7%9F%A9%E9%98%B5%E4%BC%98%E5%8C%96/"/>
-    
-    <category term="代数-矩阵" scheme="https://deepseaspray.github.io/tags/%E4%BB%A3%E6%95%B0-%E7%9F%A9%E9%98%B5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LGP6499 [COCI2016-2017#2] Burza</title>
-    <link href="https://deepseaspray.github.io/dbc79a947dec/"/>
-    <id>https://deepseaspray.github.io/dbc79a947dec/</id>
-    <published>2024-09-28T07:03:46.000Z</published>
-    <updated>2024-11-06T07:09:05.646Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;首先解释题意，对于既定策略，我们要求方案不随对方的移动而改变。&lt;/p&gt;
-&lt;p&gt;仔细思考，能取胜的最多点数的情况就是根节点下面有 $k$ 条长度为 $k$ 的链。因为对于长度小于 $k$</summary>
-        
-      
-    
-    
-    
-    <category term="洛谷题解" scheme="https://deepseaspray.github.io/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="动态规划-状态压缩" scheme="https://deepseaspray.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/"/>
-    
-    <category term="树" scheme="https://deepseaspray.github.io/tags/%E6%A0%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LGP7831 [CCO2021] Travelling Merchant</title>
-    <link href="https://deepseaspray.github.io/0cad17b027c7/"/>
-    <id>https://deepseaspray.github.io/0cad17b027c7/</id>
-    <published>2024-09-28T07:00:00.000Z</published>
-    <updated>2024-11-06T07:09:15.671Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;如果一个点的出度为 $0$，那么这个点的答案就被确定了，需要用它去更新别的点的答案。&lt;/p&gt;
-&lt;p&gt;我们此时删掉这个点，即删掉指向它的所有边 $(u,v)$，同时更新起点 $u$</summary>
-        
-      
-    
-    
-    
-    <category term="洛谷题解" scheme="https://deepseaspray.github.io/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="图论" scheme="https://deepseaspray.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CF542E Playing on Graph</title>
-    <link href="https://deepseaspray.github.io/8d92f71a0089/"/>
-    <id>https://deepseaspray.github.io/8d92f71a0089/</id>
-    <published>2024-09-24T01:03:04.000Z</published>
-    <updated>2024-11-06T07:07:17.598Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;首先我们无法将三角形变成一条链，而一个奇环操作之后将减少两个点最后变成三角形，所以有奇环则无法变成一条链。&lt;/p&gt;
-&lt;p&gt;对于一个无奇环的图，它一定是一个二分图。我们考虑对于每一个联通子块，以一</summary>
-        
-      
-    
-    
-    
-    <category term="CodeForces 题解" scheme="https://deepseaspray.github.io/categories/CodeForces-%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="图论-二分图" scheme="https://deepseaspray.github.io/tags/%E5%9B%BE%E8%AE%BA-%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CF1993E Xor-Grid Problem</title>
-    <link href="https://deepseaspray.github.io/2e642b0902fe/"/>
-    <id>https://deepseaspray.github.io/2e642b0902fe/</id>
-    <published>2024-09-23T12:30:15.000Z</published>
-    <updated>2024-11-06T07:07:20.860Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;行和列的问题是相对独立的，所以我们不妨先考虑列操作。&lt;/p&gt;
-&lt;p&gt;我们可以把每一行的异或和写在行首，称为第零列。那么我们每一次列操作就是交换某一列和第零列。&lt;/p&gt;
-&lt;p&gt;那么我们可以通过三次</summary>
-        
-      
-    
-    
-    
-    <category term="CodeForces 题解" scheme="https://deepseaspray.github.io/categories/CodeForces-%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="动态规划-状态压缩" scheme="https://deepseaspray.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>柯西不等式与带余除法</title>
-    <link href="https://deepseaspray.github.io/ed48e428b49e/"/>
-    <id>https://deepseaspray.github.io/ed48e428b49e/</id>
-    <published>2024-09-08T14:10:20.000Z</published>
-    <updated>2024-10-31T03:12:20.142Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;信息学竞赛中经常遇到这样的问题。&lt;/p&gt;
-&lt;p&gt;给定一个值 $A$，你构建一组满足 $&#92;sum_{i&amp;#x3D;1}^n a_i &amp;#x3D; A$ 的整数，使得</summary>
-        
-      
-    
-    
-    
-    <category term="数学" scheme="https://deepseaspray.github.io/categories/%E6%95%B0%E5%AD%A6/"/>
-    
-    
-    <category term="代数-不等式" scheme="https://deepseaspray.github.io/tags/%E4%BB%A3%E6%95%B0-%E4%B8%8D%E7%AD%89%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Sequence 孤星</title>
-    <link href="https://deepseaspray.github.io/6175195b1fd4/"/>
-    <id>https://deepseaspray.github.io/6175195b1fd4/</id>
-    <published>2024-08-27T08:17:54.000Z</published>
-    <updated>2024-11-06T07:09:43.927Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;我们如何计算波峰和波谷的数量和呢？&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/6175195b1fd4/sequence-1.png&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="模拟赛题解" scheme="https://deepseaspray.github.io/categories/%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="动态规划-插入式计数" scheme="https://deepseaspray.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%8F%92%E5%85%A5%E5%BC%8F%E8%AE%A1%E6%95%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Count 维什戴尔</title>
-    <link href="https://deepseaspray.github.io/70293a0ebd04/"/>
-    <id>https://deepseaspray.github.io/70293a0ebd04/</id>
-    <published>2024-08-26T23:35:48.000Z</published>
-    <updated>2024-11-06T07:07:24.477Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;注意到对于一个集合 $S$。$min(S)$，$mex(S)$ 恰好有一个为 $0$ 另一个大于 $0$。&lt;/p&gt;
-&lt;p&gt;故对于 $min(Path(u,v))+mex(Path(u,v))$</summary>
-        
-      
-    
-    
-    
-    <category term="模拟赛题解" scheme="https://deepseaspray.github.io/categories/%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%A2%98%E8%A7%A3/"/>
-    
-    
-    <category term="树" scheme="https://deepseaspray.github.io/tags/%E6%A0%91/"/>
-    
-    <category term="技巧-Min与Mex" scheme="https://deepseaspray.github.io/tags/%E6%8A%80%E5%B7%A7-Min%E4%B8%8EMex/"/>
     
   </entry>
   
