@@ -17,7 +17,7 @@
     <meta name="keywords" content="DeepSeaSpray blog">
 
 
-<title>LGP11233 [CSP-S 2024] 染色（官方数据） | DeepSeaSpray&#39;s blog</title>
+<title>Sub 子序列们 | DeepSeaSpray&#39;s blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">LGP11233 [CSP-S 2024] 染色（官方数据）</h1>
+            <h1 class="post-title">Sub 子序列们</h1>
             
                 <div class="post-meta">
                     
@@ -182,14 +182,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">十一月 7, 2024&nbsp;&nbsp;16:51:50</a>
+                        Date: <a href="#">十一月 8, 2024&nbsp;&nbsp;21:18:33</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">洛谷题解</a>
+                                <a href="/categories/%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%A2%98%E8%A7%A3/">模拟赛题解</a>
                             
                         </span>
                     
@@ -198,17 +198,20 @@
         </header>
 
         <div class="post-content">
-            <p>相当巧妙的优化。</p>
-<p>首先我们需要设计一下状态，一般而言，我们会设考虑到 $i$，的答案为 $f(i)$。</p>
-<p>然而我们可以作出更精细的限制，我们可以令 $i$ 与 $i-1$ 异色。</p>
-<p>首先比较显然的，可以转移 $f(i) &#x3D; f(i-1)$。</p>
-<p>剩下的转移想要优于 $f(i-1)$，$i$ 必须做贡献。</p>
-<p>记 $lst(a(i))$ 表示 $a(i)$ 上一次出现的位置。</p>
-<p>那么我们只可能从 $lst(a(i))+1$ 转移过来，因为其他的位置一定不如它优。</p>
-<p>同时我们 $[lst(a(i))+1,i]$ 中间的贡献用前缀和 $s$ 来维护。</p>
-<p>那么我们有转移：$f(i) &#x3D; f(lst(a(i))+1) + a(i) + s(i) - s(lst(a(i))+1)$。</p>
-<p>答案 $f(n)$。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">1e6</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> a[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> f[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> s[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> lst[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;a[i]);</span><br><span class="line">        <span class="keyword">if</span>(<span class="number">1</span>&lt;i) s[i]=s[i<span class="number">-1</span>]+(a[i]==a[i<span class="number">-1</span>])*a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(lst,<span class="number">0</span>,<span class="built_in">sizeof</span>(lst));</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        f[i]=f[i<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">if</span>(lst[a[i]])</span><br><span class="line">            f[i]=<span class="built_in">max</span>(f[i],f[lst[a[i]]<span class="number">+1</span>]+a[i]+s[i]-s[lst[a[i]]<span class="number">+1</span>]);</span><br><span class="line">        lst[a[i]]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,f[n]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> tcnt;<span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;tcnt);</span><br><span class="line">    <span class="keyword">while</span>(tcnt--) <span class="built_in">Solve</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>首先，我们发现要生成本质不同的子序列，需要删除不同的相同颜色段中的任意一个。</p>
+<p>考虑加强结论，要求删除相同颜色段的第一个。</p>
+<p>然而这样我们还面临合并颜色段的问题，不好操作。</p>
+<p>我们考虑给每个点标记一个删除时间戳，不同的时间戳序列就是不同的子序列。</p>
+<p>那么我们每一次删除的点需要满足前一个时间戳大于其的点与其异色。</p>
+<p>我们设状态 $f(l,r)$ 表示为 $[l,r]$ 填时间戳的方案数，然而我们不知道前一个时间戳大于其的点，所以不好转移。</p>
+<p>考虑加强状态，要求 $l-1$ 的时间戳大于 $[l,r]$。</p>
+<p>答案仍然为 $f(1,n)$，所以加强是没问题的。</p>
+<p>那么这样我们就可以通过枚举 $[l,r]$ 中的最大时间戳点 $k$ 转移。</p>
+<p>$$<br>f(l,r) &#x3D; \sum_{k&#x3D;l}^r  \binom{r-l}{k-l} \cdot f(l,k-1) \cdot f(k+1,r)<br>$$</p>
+<p>其中：$s(k) &#x3D; s(l-1)$。</p>
+<p>其中组合数表示分配时间戳的方案数。</p>
+<p>注意预处理。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">400</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">char</span> s[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> c[maxn<span class="number">+5</span>][maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> f[maxn<span class="number">+5</span>][maxn<span class="number">+5</span>];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%s&quot;</span>,&amp;n,s<span class="number">+1</span>);</span><br><span class="line">    c[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        c[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=i;j++)</span><br><span class="line">            c[i][j]=(c[i<span class="number">-1</span>][j<span class="number">-1</span>]+c[i<span class="number">-1</span>][j])%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">+1</span>;i++)</span><br><span class="line">        f[i][i<span class="number">-1</span>]=<span class="number">1</span>,f[i][i]=(s[i]!=s[i<span class="number">-1</span>]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> len=<span class="number">2</span>;len&lt;=n;len++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,j=i+len<span class="number">-1</span>;j&lt;=n;i++,j++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k=i;k&lt;=j;k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s[k]!=s[i<span class="number">-1</span>])&#123;</span><br><span class="line">                    f[i][j]=(f[i][j]</span><br><span class="line">                        <span class="number">+1ll</span>*f[i][k<span class="number">-1</span>]*f[k<span class="number">+1</span>][j]%mod</span><br><span class="line">                        *c[j-i][k-i]%mod)%mod;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,f[<span class="number">1</span>][n]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
 
         
@@ -222,7 +225,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://deepseaspray.github.io/5a39de4add70/">https://deepseaspray.github.io/5a39de4add70/</a></span>
+                        <span><a href="https://deepseaspray.github.io/abdfdae89821/">https://deepseaspray.github.io/abdfdae89821/</a></span>
                     </p>
                 
                 
@@ -236,11 +239,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E5%89%8D%E7%BC%80%E5%92%8C%E4%BC%98%E5%8C%96/"># 动态规划-前缀和优化</a>
-                    
                         <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E7%8A%B6%E6%80%81%E8%AE%BE%E8%AE%A1/"># 动态规划-状态设计</a>
                     
-                        <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E6%9C%80%E4%BC%98%E5%8C%96%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E4%BC%98%E5%8C%96/"># 动态规划-最优化动态规划-优化</a>
+                        <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E5%8C%BA%E9%97%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"># 动态规划-区间动态规划</a>
                     
                         
                 </span>
@@ -253,10 +254,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/abdfdae89821/">Sub 子序列们</a>
+                <a class="prev" rel="prev" href="/e76279f26d70/">Paint 此时此刻的光辉</a>
             
             
-            <a class="next" rel="next" href="/0e4d695cca31/">Fun 函数</a>
+            <a class="next" rel="next" href="/5a39de4add70/">LGP11233 [CSP-S 2024] 染色（官方数据）</a>
             
         </section>
 
