@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DeepSeaSpray">
+
+
+
+    <meta name="description" content="DeepSeaSpray's blog">
+
+
+    <meta name="keywords" content="DeepSeaSpray blog">
+
+
+<title>Tree 树 | DeepSeaSpray&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="DeepSeaSpray's blog" type="application/atom+xml">
+</head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">DeepSeaSpray&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">DeepSeaSpray&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Tree 树</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">DeepSeaSpray</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十一月 26, 2024&nbsp;&nbsp;20:14:52</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%A8%A1%E6%8B%9F%E8%B5%9B%E9%A2%98%E8%A7%A3/">模拟赛题解</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>我们考虑忽略贡献直接计数怎么做？</p>
+<p>可以发现题目要求即为一个点为一个划分集合的根，其他的点其每一个子树内只存在一个。</p>
+<p>显然考虑动态规划。</p>
+<p>考虑到我们只在乎一个子树中有多少个点没有加入划分集合，$dp(u,i)$ 表示 $u$ 的子树内剩余 $i$ 个点。</p>
+<p>转移分为以这个点为根划分以及不划分两种。</p>
+<ul>
+<li>$dp(u,i) \cdot dp(v,j) \to dp(u,i+j)$</li>
+<li>$dp(u,i) \cdot dp(v,j) \cdot j \to dp(u,i+j-1)$</li>
+</ul>
+<p>然后考虑如何计算贡献，拆开考察组合意义，即：每一个划分中选择一个点（下文称黑点）的所有方案的乘积和。</p>
+<p>于是考虑 $dp(u,i,j)$ 表示 $u$ 的子树中，$i$ 个未划分的白点，$j$ 个未划分的黑点的总贡献。</p>
+<p>分三类考虑，$u$ 不划分，$u$ 为黑色点并划分，$u$ 为白色点并划分。</p>
+<p>不划分的点我们也需要先钦定颜色。</p>
+<p>具体来说维护三个转移数组：$f$,$g$,$h$，分别表示不划分，每一个子树选一个白点划分或不选，其中有一个子树选了一个黑点，其他选白点或不选的方案</p>
+<p>遍历每一个棵子树，其可以不选，选一个白点，选一个黑点，按照逻辑转移即可，注意选白点或黑点有一个权值。</p>
+<p>最后将转移数组合并到 $dp$，$f$ 需要考虑 $u$ 的颜色（被别人选），$g$ 则 $u$ 选黑色，注意 $a(u)$ 的权值，$h$ 则 $u$ 选白色并划分。</p>
+<p>时间复杂度 $O(n^4)$。</p>
+<p>具体方程见代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">100</span>;</span><br><span class="line"><span class="type">int</span> n,mod;</span><br><span class="line"><span class="type">int</span> a[maxn<span class="number">+5</span>];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; E[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> sz[maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> dp[maxn<span class="number">+5</span>][maxn<span class="number">+5</span>][maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> f[<span class="number">2</span>][maxn<span class="number">+5</span>][maxn<span class="number">+5</span>][maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> g[<span class="number">2</span>][maxn<span class="number">+5</span>][maxn<span class="number">+5</span>][maxn<span class="number">+5</span>];</span><br><span class="line"><span class="type">int</span> h[<span class="number">2</span>][maxn<span class="number">+5</span>][maxn<span class="number">+5</span>][maxn<span class="number">+5</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Add</span><span class="params">(<span class="type">int</span> &amp;x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x+y&gt;=mod) x=x+y-mod;</span><br><span class="line">    <span class="keyword">else</span> x=x+y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Dfs</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:E[u]) <span class="keyword">if</span>(v!=fa) <span class="built_in">Dfs</span>(v,u);</span><br><span class="line">    f[<span class="number">0</span>][u][<span class="number">0</span>][<span class="number">0</span>]=g[<span class="number">0</span>][u][<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:E[u])&#123;</span><br><span class="line">        <span class="keyword">if</span>(v==fa) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=sz[u];i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;i+j&lt;=sz[u];j++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> ii=<span class="number">0</span>;ii&lt;=sz[v];ii++)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="type">int</span> jj=<span class="number">0</span>;ii+jj&lt;=sz[v];jj++)&#123;</span><br><span class="line">                        <span class="type">const</span> <span class="type">int</span> val=dp[v][ii][jj];</span><br><span class="line">                        <span class="type">const</span> <span class="type">int</span> fval=f[<span class="number">0</span>][u][i][j];</span><br><span class="line">                        <span class="type">const</span> <span class="type">int</span> gval=g[<span class="number">0</span>][u][i][j];</span><br><span class="line">                        <span class="type">const</span> <span class="type">int</span> hval=h[<span class="number">0</span>][u][i][j];</span><br><span class="line">                        <span class="built_in">Add</span>(f[<span class="number">1</span>][u][i+ii][j+jj],<span class="number">1ll</span>*fval*val%mod);</span><br><span class="line">                        <span class="comment">// Add(g[1][u][i+ii-1][j+jj],1ll*fval*val%mod*ii%mod);</span></span><br><span class="line">                        <span class="keyword">if</span>(i+ii) <span class="built_in">Add</span>(g[<span class="number">1</span>][u][i+ii<span class="number">-1</span>][j+jj],<span class="number">1ll</span>*gval*val%mod*ii%mod);</span><br><span class="line">                        <span class="built_in">Add</span>(g[<span class="number">1</span>][u][i+ii][j+jj],<span class="number">1ll</span>*gval*val%mod);</span><br><span class="line">                        <span class="comment">// Add(h[1][u][i+ii][j+jj-1],1ll*fval*val%mod*jj%mod);</span></span><br><span class="line">                        <span class="keyword">if</span>(j+jj) <span class="built_in">Add</span>(h[<span class="number">1</span>][u][i+ii][j+jj<span class="number">-1</span>],<span class="number">1ll</span>*gval*val%mod*jj%mod);</span><br><span class="line">                        <span class="built_in">Add</span>(h[<span class="number">1</span>][u][i+ii][j+jj],<span class="number">1ll</span>*hval*val%mod);</span><br><span class="line">                        <span class="keyword">if</span>(i+ii) <span class="built_in">Add</span>(h[<span class="number">1</span>][u][i+ii<span class="number">-1</span>][j+jj],<span class="number">1ll</span>*hval*val%mod*ii%mod);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        sz[u]+=sz[v];</span><br><span class="line">        <span class="built_in">swap</span>(f[<span class="number">0</span>][u],f[<span class="number">1</span>][u]);</span><br><span class="line">        <span class="built_in">memset</span>(f[<span class="number">1</span>][u],<span class="number">0</span>,<span class="built_in">sizeof</span>(f[<span class="number">1</span>][u]));</span><br><span class="line">        <span class="built_in">swap</span>(g[<span class="number">0</span>][u],g[<span class="number">1</span>][u]);</span><br><span class="line">        <span class="built_in">memset</span>(g[<span class="number">1</span>][u],<span class="number">0</span>,<span class="built_in">sizeof</span>(g[<span class="number">1</span>][u]));</span><br><span class="line">        <span class="built_in">swap</span>(h[<span class="number">0</span>][u],h[<span class="number">1</span>][u]);</span><br><span class="line">        <span class="built_in">memset</span>(h[<span class="number">1</span>][u],<span class="number">0</span>,<span class="built_in">sizeof</span>(h[<span class="number">1</span>][u]));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=sz[u];i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;i+j&lt;=sz[u];j++)&#123;</span><br><span class="line">            <span class="built_in">Add</span>(dp[u][i<span class="number">+1</span>][j],f[<span class="number">0</span>][u][i][j]);</span><br><span class="line">            <span class="built_in">Add</span>(dp[u][i][j<span class="number">+1</span>],<span class="number">1ll</span>*a[u]*f[<span class="number">0</span>][u][i][j]%mod);</span><br><span class="line">            <span class="built_in">Add</span>(dp[u][i][j],<span class="number">1ll</span>*a[u]*g[<span class="number">0</span>][u][i][j]%mod);</span><br><span class="line">            <span class="built_in">Add</span>(dp[u][i][j],h[<span class="number">0</span>][u][i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    sz[u]++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;tree.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;tree.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="comment">// freopen(&quot;ex_tree2.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;mod);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    <span class="type">int</span> u,v;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v);</span><br><span class="line">        E[u].<span class="built_in">emplace_back</span>(v);</span><br><span class="line">        E[v].<span class="built_in">emplace_back</span>(u);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Dfs</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,dp[<span class="number">1</span>][<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>DeepSeaSpray</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://deepseaspray.github.io/777c34ab7488/">https://deepseaspray.github.io/777c34ab7488/</a></span>
+                    </p>
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"># 动态规划</a>
+                    
+                        <a href="/tags/%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89/"># 组合意义</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/40917bcb2041/">Modmat Soso的模法矩阵</a>
+            
+            
+            <a class="next" rel="next" href="/d11584823bc0/">LGP7215 [JOISC2020] 首都</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DeepSeaSpray | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
