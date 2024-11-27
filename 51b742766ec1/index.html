@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="DeepSeaSpray">
+
+
+
+    <meta name="description" content="DeepSeaSpray's blog">
+
+
+    <meta name="keywords" content="DeepSeaSpray blog">
+
+
+<title>杂题复习1 | DeepSeaSpray&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="DeepSeaSpray's blog" type="application/atom+xml">
+</head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">DeepSeaSpray&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">DeepSeaSpray&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">杂题复习1</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">DeepSeaSpray</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十一月 27, 2024&nbsp;&nbsp;8:15:48</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="P3615-如厕计划"><a href="#P3615-如厕计划" class="headerlink" title="P3615 如厕计划"></a>P3615 如厕计划</h2><p>发现女的可以插队，所以从后往前考虑。</p>
+<p>如果最后剩两个男的显然不行，发现要么一男一女，要么两个女的，所以记男为 $+1$，女为 $-1$，那么要求每一个后缀和都小于 $2$，因为女的插队就往前走了，显然更大（因为我们实际要求在队列的每一个时刻都有如下性质）。</p>
+<p>现在考虑移动的问题，由于只要最不满意的同学满意度最小，所以我们可以考虑每次把一个男的移动到队头，这样只会让所有人都加一并且所有后缀和减一。</p>
+<p>那么我们发现答案就是最大后缀和减一。</p>
+<h2 id="P5665-CSP-S2019-划分"><a href="#P5665-CSP-S2019-划分" class="headerlink" title="P5665 [CSP-S2019] 划分"></a>P5665 [CSP-S2019] 划分</h2><p>发现一个关键性质，由于段的递增性，最后一段越小总代价越小，由此转移方程：</p>
+<p>$$<br>p(i) &#x3D; \max j \ \{s(i)-s(j) \geq s(j) - s(p(j))\} \\<br>f(i) &#x3D; f(p(i)) + (s(i)-s(p(i)))^2<br>$$</p>
+<p>考虑如何求 $p(i)$。</p>
+<p>拆条件：$s(i) \geq 2s(j) - s(p(j))$。</p>
+<p>维护递增的单调队列即可。</p>
+<p>引入回收机制卡空间。</p>
+<h2 id="P2300-合并神犇"><a href="#P2300-合并神犇" class="headerlink" title="P2300 合并神犇"></a>P2300 合并神犇</h2><p>同划分，找最大点转移。</p>
+<h2 id="P1155-NOIP2008-提高组-双栈排序"><a href="#P1155-NOIP2008-提高组-双栈排序" class="headerlink" title="P1155 [NOIP2008 提高组] 双栈排序"></a>P1155 [NOIP2008 提高组] 双栈排序</h2><p>考虑每一个点在哪一个栈里操作。</p>
+<p>考虑数对 $i &lt; j &lt; k$，有 $a_k &lt; a_i &lt; a_j$，考虑到字典序问题，那么 $i$，$j$ 不共存。</p>
+<p>连边，跑二分图染色（注意字典序问题），然后就出栈入栈模拟操作，注意字典序问题。</p>
+<h2 id="P9870-NOIP2023-双序列拓展"><a href="#P9870-NOIP2023-双序列拓展" class="headerlink" title="P9870 [NOIP2023] 双序列拓展"></a>P9870 [NOIP2023] 双序列拓展</h2><p>要求 $f$ 全大于或小于 $g$。</p>
+<p>先考虑第一种，第二种同理。考虑双指针，把一对指针的合法性画在二维表格中，我们需要找一条从左上到右下的路径。</p>
+<p>首先若 $X_{min} \geq Y_{min}$ 或 $X_{max} \geq Y_{max}$ 那么有一列或一行无法走。</p>
+<p>观察到特殊性质。</p>
+<p>剩余的情况 $X_{n} &lt; Y_{min}$ 且 $X_{max} &lt; Y_{m}$。那么最后一行和最后一列都可以走。</p>
+<p>那么类似于你给出了一个边框，只要走到边框上就可以了，在前面再做一次，子问题。</p>
+<p>对于一般情况。</p>
+<p>那么我们找到最小值然后分成左上右下两个问题做。</p>
+<h2 id="P7962-NOIP2021-方差"><a href="#P7962-NOIP2021-方差" class="headerlink" title="P7962 [NOIP2021] 方差"></a>P7962 [NOIP2021] 方差</h2><p>考虑差分，发现一次操作实际上交换了差分数组的两项。</p>
+<p>打表发现它是单谷，设为初始状态模拟退火即可。</p>
+<p>也可以 DP，考虑差分从小到大排序，每次加入头或尾，状态记录 $\sum a$，维护 $\sum a^2$ 即可转移，时间复杂度 $O(n^2 \max a)$。</p>
+<p>注意到非零的 $a$ 只有 $\max a$ 个，所以时间复杂度 $O(n (\max a)^2)$。</p>
+<h2 id="P1081-NOIP2012-提高组-开车旅行"><a href="#P1081-NOIP2012-提高组-开车旅行" class="headerlink" title="P1081 [NOIP2012 提高组] 开车旅行"></a>P1081 [NOIP2012 提高组] 开车旅行</h2><p>预处理前驱后继，倍增处理开到哪，A 开多少，B  开多少即可。</p>
+<h2 id="P9120-春季测试-2023-密码锁"><a href="#P9120-春季测试-2023-密码锁" class="headerlink" title="P9120 [春季测试 2023] 密码锁"></a>P9120 [春季测试 2023] 密码锁</h2><p>发现取得很宽，考虑一个贪心，每一次拨圈使得答案最小。</p>
+<p>这样的后效性显然不对，但是我们考虑贪心的顺序，如果我们枚举所有的顺序贪心那么一定可以找到，所以我们随机化即可。</p>
+<h2 id="P1979-NOIP2013-提高组-华容道"><a href="#P1979-NOIP2013-提高组-华容道" class="headerlink" title="P1979 [NOIP2013 提高组] 华容道"></a>P1979 [NOIP2013 提高组] 华容道</h2><p>考虑移动空白格。首先需要将空白格移动到关键格旁边，BFS 处理。</p>
+<p>图论建模，由于空白格始终在关键格旁边，因此可以设在其上下左右为四种状态，四种状态之间按照步数连边 BFS 处理，然后还有空白格和关键格互换，连边。然后跑 DIJ 即可。</p>
+<h2 id="P3953-NOIP2017-提高组-逛公园"><a href="#P3953-NOIP2017-提高组-逛公园" class="headerlink" title="P3953 [NOIP2017 提高组] 逛公园"></a>P3953 [NOIP2017 提高组] 逛公园</h2><p>先跑 DIJ，拆点，按照拆点的 DIS 跑 DP，对于同 DIS 拓扑排序。</p>
+<h2 id="P5023-NOIP2018-提高组-填数游戏"><a href="#P5023-NOIP2018-提高组-填数游戏" class="headerlink" title="P5023 [NOIP2018 提高组] 填数游戏"></a>P5023 [NOIP2018 提高组] 填数游戏</h2><p>打表找规律</p>
+<h2 id="P3959-NOIP2017-提高组-宝藏"><a href="#P3959-NOIP2017-提高组-宝藏" class="headerlink" title="P3959 [NOIP2017 提高组] 宝藏"></a>P3959 [NOIP2017 提高组] 宝藏</h2><p>状压，$f(s,i)$ 表示选择的集合与最大距离，每次选一个集合来更新，他们都与最大距离的点相连（因为不然一定不优），枚举子集，时间复杂度 $O(n^2 3^n)$。</p>
+<h2 id="P9871-NOIP2023-天天爱打卡"><a href="#P9871-NOIP2023-天天爱打卡" class="headerlink" title="P9871 [NOIP2023] 天天爱打卡"></a>P9871 [NOIP2023] 天天爱打卡</h2><p>DP，$f(i)$ 表示考虑到 $i$，奖励用扫描线做，花费把贡献拆开，可以线段树。</p>
+<p>考虑到关键点 $l$，$r$，加一个离散化。</p>
+<p>注意些细节，线段树维护转移点的贡献，把答案保存下来，每一次用前面的来更新，更逻辑化。</p>
+<h2 id="P2680-NOIP2015-提高组-运输计划"><a href="#P2680-NOIP2015-提高组-运输计划" class="headerlink" title="P2680 [NOIP2015 提高组] 运输计划"></a>P2680 [NOIP2015 提高组] 运输计划</h2><p>二分答案，显然大于这个答案的路径的并集（树上差分打标记）上的最大边权是要减掉的，检查即可，注意二分边界（卡卡常）。</p>
+<h2 id="P1315-NOIP2011-提高组-观光公交"><a href="#P1315-NOIP2011-提高组-观光公交" class="headerlink" title="P1315 [NOIP2011 提高组] 观光公交"></a>P1315 [NOIP2011 提高组] 观光公交</h2><p>先打一个暴力，拆拆式子，贪心即可。</p>
+<h2 id="P5021-NOIP2018-提高组-赛道修建"><a href="#P5021-NOIP2018-提高组-赛道修建" class="headerlink" title="P5021 [NOIP2018 提高组] 赛道修建"></a>P5021 [NOIP2018 提高组] 赛道修建</h2><p>树，二分答案，求最多赛道数，检查。对于每一个子树，可以选一条往上给，合法的扔掉，剩下的尽量凑（从小的开始用）。</p>
+<h2 id="P7619-COCI2011-2012-2-RASPORED"><a href="#P7619-COCI2011-2012-2-RASPORED" class="headerlink" title="P7619 [COCI2011-2012#2] RASPORED"></a>P7619 [COCI2011-2012#2] RASPORED</h2><p>拆式子，找到顺序，值域很小，上树状数组。</p>
+<h2 id="P3426-POI2005-SZA-Template"><a href="#P3426-POI2005-SZA-Template" class="headerlink" title="P3426 [POI2005] SZA-Template"></a>P3426 [POI2005] SZA-Template</h2><p>$f(i)$ 为 $i$ 或 $f(fali(i))$。</p>
+<p>为 $f(fail(i))$ 当且仅当存在 $f(j) &#x3D; f(fail(i))$ 使得 $i - fail(i) &lt;&#x3D; j$。</p>
+<h2 id="P6653-YsOI2020-造林"><a href="#P6653-YsOI2020-造林" class="headerlink" title="P6653 [YsOI2020] 造林"></a>P6653 [YsOI2020] 造林</h2><p>找到重心，由于重心的性质，最大子树一定包含重心。换而言之嫁接了一个点之后只会影响 <strong>除了</strong> 其到重心路径上的所有点。</p>
+<p>从重心开始 DFS，我们发现最大子树一定增，这样我们只需要字符串哈希就维护出了这个可重集。</p>
+<p>特判重心的最大子树，双重心拆开。</p>
+<h2 id="P7320-「PMOI-4」可怜的团主"><a href="#P7320-「PMOI-4」可怜的团主" class="headerlink" title="P7320 「PMOI-4」可怜的团主"></a>P7320 「PMOI-4」可怜的团主</h2><p>对于 DFS 生成树，保证根节点度数不为 $1$，叶子之间两两没有边。</p>
+<p>若有 $\lfloor \frac{n}{3} \rfloor$ 个叶子，选第二种，否则选第一种。</p>
+<p>对于第一种，我们考虑把叶子按照 DFS 序取出来。</p>
+<p>前一半和后一半连边。</p>
+<p>考虑每一个点，每一个子树中必有一个叶子，所以一定会跨子树连接，或者直接连出去。</p>
+<p>如果只有一个子树，那就一定会连出去，否则就是根节点，矛盾。</p>
+<h2 id="P7393-「TOCO-Round-1」Eternal-Star"><a href="#P7393-「TOCO-Round-1」Eternal-Star" class="headerlink" title="P7393 「TOCO Round 1」Eternal Star"></a>P7393 「TOCO Round 1」Eternal Star</h2><p>对于一个点 $i$，他必须有 $1$ 到 $i-1$ 的所有子树，每一个有 $x&#x3D;i-j+1, i+xj&lt;x(j+1)+j$，递归创建。</p>
+<p>这样太大了，考虑直接把两颗 $K-1$ 的子树连接起来，其中一个将变成 $K$，这里下面子树数量要按照 $K$ 的建。</p>
+<h2 id="P7124-Ynoi2008-stcm"><a href="#P7124-Ynoi2008-stcm" class="headerlink" title="P7124 [Ynoi2008] stcm"></a>P7124 [Ynoi2008] stcm</h2><p>DFS序转换成区间问题，分治，当前区间表示所在区间没有被包含。</p>
+<p>分治到子区间去做，考虑无法分治的部分。树上区间显然不会相交，所以剩下的一定是一个包含的关系，从两边开始删就可以了。</p>
+<p>时间复杂度 $O(n\log n)$。</p>
+<h2 id="P8329-ZJOI2022-树"><a href="#P8329-ZJOI2022-树" class="headerlink" title="P8329 [ZJOI2022] 树"></a>P8329 [ZJOI2022] 树</h2><p>跳过(FLG)。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>DeepSeaSpray</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://deepseaspray.github.io/51b742766ec1/">https://deepseaspray.github.io/51b742766ec1/</a></span>
+                    </p>
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/40917bcb2041/">Modmat Soso的模法矩阵</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© DeepSeaSpray | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
