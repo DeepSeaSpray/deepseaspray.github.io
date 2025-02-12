@@ -11,11 +11,11 @@
   <meta charset="utf-8">
 
   
-  <title>Works - DeepSeaSpray</title>
+  <title>OIERDB分析程序</title>
   
-  <link rel="canonical" href="https://deepseaspray.github.io/Works/">
+  <link rel="canonical" href="https://deepseaspray.github.io/archives/421619114b95/">
   
-  <meta name="description" content="">
+  <meta name="description" content="OIERDB 的搜索功能有一定的局限性，我们难以进行更复杂的数据分析（包括但不限于开盒等），所以我写了一个程序读取 OIERDB 的数据库，然后我们就可以在代码里随意操作了。 如果要开一个人（我是说如果），你只需要把你已知的信息作为约束条件再逐个判断就可以了。 代码下载：main.py 首">
   
   
   <meta name="author" content="DeepSeaSpray">
@@ -24,21 +24,21 @@
   
   <meta property="og:site_name" content="Spray" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Works - DeepSeaSpray" />
+  <meta property="og:title" content="OIERDB分析程序" />
   
-  <meta property="og:description" content="">
+  <meta property="og:description" content="OIERDB 的搜索功能有一定的局限性，我们难以进行更复杂的数据分析（包括但不限于开盒等），所以我写了一个程序读取 OIERDB 的数据库，然后我们就可以在代码里随意操作了。 如果要开一个人（我是说如果），你只需要把你已知的信息作为约束条件再逐个判断就可以了。 代码下载：main.py 首">
   
-  <meta property="og:url" content="https://deepseaspray.github.io/Works/" />
+  <meta property="og:url" content="https://deepseaspray.github.io/archives/421619114b95/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Works - DeepSeaSpray">
+  <meta name="twitter:title" content="OIERDB分析程序">
   
-  <meta name="twitter:description" content="">
+  <meta name="twitter:description" content="OIERDB 的搜索功能有一定的局限性，我们难以进行更复杂的数据分析（包括但不限于开盒等），所以我写了一个程序读取 OIERDB 的数据库，然后我们就可以在代码里随意操作了。 如果要开一个人（我是说如果），你只需要把你已知的信息作为约束条件再逐个判断就可以了。 代码下载：main.py 首">
   
   
   <meta name="twitter:image" content="https://deepseaspray.github.ioundefined">
   
-  <meta name="twitter:url" content="https://deepseaspray.github.io/Works/" />
+  <meta name="twitter:url" content="https://deepseaspray.github.io/archives/421619114b95/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -301,8 +301,68 @@ mjx-container[display="true"] + br {
 </div>
 
         <div class="trans">
-            <h2>Works</h2>
+            <h1>OIERDB分析程序</h1>
 
+  <p>OIERDB
+的搜索功能有一定的局限性，我们难以进行更复杂的数据分析（包括但不限于开盒等），所以我写了一个程序读取
+OIERDB 的数据库，然后我们就可以在代码里随意操作了。</p>
+<p>如果要开一个人（我是说如果），你只需要把你已知的信息作为约束条件再逐个判断就可以了。</p>
+<p>代码下载：<a href="main.py">main.py</a></p>
+<p>首先你需要部署 <a target="_blank" rel="noopener" href="https://github.com/OIerDb-ng/OIerDb-data-generator">https://github.com/OIerDb-ng/OIerDb-data-generator</a>
+来生成数据库，按照其说明部署即可。</p>
+<p>接着按照说明，找到部署后生成的文件 <code>result.txt</code>。</p>
+<p>将其与 <code>main.py</code> 保持在同一目录下。</p>
+<p>然后运行 <code>main.py</code>
+就可以了，速度会比较慢（写的很丑），写了注释。</p>
+<p>然后主要是说说怎么看记录的数据的含义。</p>
+<p>一条记录中：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Record</span><span class="token punctuation">:</span>
+    <span class="token comment"># 比赛编号</span>
+    contest <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># 学校编号</span>
+    school <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># 成绩</span>
+    score <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># 排名</span>
+    rank <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># 省份编号</span>
+    province <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># 奖项编号</span>
+    prize <span class="token operator">=</span> <span class="token string">""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中奖项编号对应关系如下：</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">0 -&gt; 金牌
+1 -&gt; 银牌
+2 -&gt; 铜牌
+3 -&gt; 一等
+4 -&gt; 二等
+5 -&gt; 三等<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>一个 OIER：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Oier</span><span class="token punctuation">:</span>
+    <span class="token comment"># 编号</span>
+    uid <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># 名字首字母（对于大多数人）</span>
+    enname <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># 名字</span>
+    zhname <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># 性别</span>
+    <span class="token comment"># man 1 woman -1</span>
+    gender <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># 初中入学年份</span>
+    year <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># OIERDB 分数</span>
+    dbscore <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># CCF 分数</span>
+    ccfscore <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># CCF 等级</span>
+    ccfgrade <span class="token operator">=</span> <span class="token string">""</span>
+    <span class="token comment"># 比赛记录，以比赛编号为键，记录为值的字典</span>
+    recs <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>recs <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后所有的 OIER 的数据都被存在了
+<code>oiers</code>，可以任意处置。</p>
+
+  <p><a class="classtest-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/" rel="tag">技术杂谈</a> — Feb 12, 2025</p>
   
 
 

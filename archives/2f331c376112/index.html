@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>爬取知乎收藏夹</title>
+  
+  <link rel="canonical" href="https://deepseaspray.github.io/archives/2f331c376112/">
+  
+  <meta name="description" content="是这样的，我的知乎收藏了很多文章，但是知乎的收藏夹却没有搜索功能，这使得我很难通过搜索找到自己收藏过的文章。 所以我打算用 Python 爬取我的知乎收藏夹，并保存下来，然后就可以很方便的搜索了。 但是其实我并不是很会爬虫，所以我选择使用模拟浏览器行为并下载网页再分析的方式爬取。 以下是代码">
+  
+  
+  <meta name="author" content="DeepSeaSpray">
+  
+  <meta property="og:image" content="https://deepseaspray.github.ioundefined">
+  
+  <meta property="og:site_name" content="Spray" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="爬取知乎收藏夹" />
+  
+  <meta property="og:description" content="是这样的，我的知乎收藏了很多文章，但是知乎的收藏夹却没有搜索功能，这使得我很难通过搜索找到自己收藏过的文章。 所以我打算用 Python 爬取我的知乎收藏夹，并保存下来，然后就可以很方便的搜索了。 但是其实我并不是很会爬虫，所以我选择使用模拟浏览器行为并下载网页再分析的方式爬取。 以下是代码">
+  
+  <meta property="og:url" content="https://deepseaspray.github.io/archives/2f331c376112/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="爬取知乎收藏夹">
+  
+  <meta name="twitter:description" content="是这样的，我的知乎收藏了很多文章，但是知乎的收藏夹却没有搜索功能，这使得我很难通过搜索找到自己收藏过的文章。 所以我打算用 Python 爬取我的知乎收藏夹，并保存下来，然后就可以很方便的搜索了。 但是其实我并不是很会爬虫，所以我选择使用模拟浏览器行为并下载网页再分析的方式爬取。 以下是代码">
+  
+  
+  <meta name="twitter:image" content="https://deepseaspray.github.ioundefined">
+  
+  <meta name="twitter:url" content="https://deepseaspray.github.io/archives/2f331c376112/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="../fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <!-- <div onclick=setDarkMode(true) id="darkBtn"></div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden></div> -->
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Spray&#39;s Blog
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/Works" class="ml">Works</a>
+          
+        
+          
+          <a href="/About" class="ml">About</a>
+          
+        
+        
+          
+            <a href="mailto:deepseaspray@163.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h1>爬取知乎收藏夹</h1>
+
+  <p>是这样的，我的知乎收藏了很多文章，但是知乎的收藏夹却没有搜索功能，这使得我很难通过搜索找到自己收藏过的文章。</p>
+<p>所以我打算用 Python
+爬取我的知乎收藏夹，并保存下来，然后就可以很方便的搜索了。</p>
+<p>但是其实我并不是很会爬虫，所以我选择使用模拟浏览器行为并下载网页再分析的方式爬取。</p>
+<p>以下是代码（写的很丑），写了注释，比较简单。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> selenium<span class="token punctuation">.</span>webdriver<span class="token punctuation">.</span>edge<span class="token punctuation">.</span>options <span class="token keyword">import</span> Options
+<span class="token keyword">from</span> selenium<span class="token punctuation">.</span>webdriver<span class="token punctuation">.</span>edge<span class="token punctuation">.</span>service <span class="token keyword">import</span> Service
+<span class="token keyword">from</span> bs4 <span class="token keyword">import</span> BeautifulSoup
+<span class="token keyword">import</span> time
+
+<span class="token comment"># msedgedriver 路径</span>
+edge_driver_path <span class="token operator">=</span> <span class="token string">'D:\\edgedriver_win64\\msedgedriver.exe'</span>
+options <span class="token operator">=</span> Options<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 无头，即不渲染</span>
+options<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">"--headless=new"</span><span class="token punctuation">)</span>
+service <span class="token operator">=</span> Service<span class="token punctuation">(</span>edge_driver_path<span class="token punctuation">)</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Edge<span class="token punctuation">(</span>service<span class="token operator">=</span>service<span class="token punctuation">,</span> options<span class="token operator">=</span>options<span class="token punctuation">)</span>
+<span class="token comment"># 页数</span>
+count <span class="token operator">=</span> <span class="token number">47</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> count<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Group '</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment"># 链接</span>
+    driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'https://www.zhihu.com/collection/920424365?page='</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment"># 获取当前页面最下滚动位置</span>
+    last_height <span class="token operator">=</span> driver<span class="token punctuation">.</span>execute_script<span class="token punctuation">(</span><span class="token string">"return document.body.scrollHeight"</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        <span class="token comment"># 向下滚动并等待两秒加载</span>
+        driver<span class="token punctuation">.</span>execute_script<span class="token punctuation">(</span><span class="token string">"window.scrollTo(0, document.body.scrollHeight);"</span><span class="token punctuation">)</span>
+        time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token comment"># 获取当前页面最下滚动位置</span>
+        new_height <span class="token operator">=</span> driver<span class="token punctuation">.</span>execute_script<span class="token punctuation">(</span><span class="token string">"return document.body.scrollHeight"</span><span class="token punctuation">)</span>
+        <span class="token comment"># 无法滚动，页面结束</span>
+        <span class="token keyword">if</span> new_height <span class="token operator">==</span> last_height<span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+        last_height <span class="token operator">=</span> new_height
+    <span class="token comment"># 获取页面内容并保存</span>
+    html_content <span class="token operator">=</span> driver<span class="token punctuation">.</span>page_source
+    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'.html'</span><span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
+        <span class="token builtin">file</span><span class="token punctuation">.</span>write<span class="token punctuation">(</span>html_content<span class="token punctuation">)</span>
+<span class="token comment"># 退出</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+linkid <span class="token operator">=</span> <span class="token number">0</span>
+output <span class="token operator">=</span> <span class="token string">''</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 读取文件</span>
+    path <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'.html'</span>
+    htmlfile <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> <span class="token string">'r'</span><span class="token punctuation">,</span> encoding <span class="token operator">=</span> <span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+    htmlhandle <span class="token operator">=</span> htmlfile<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment"># 分析</span>
+    soup <span class="token operator">=</span> BeautifulSoup<span class="token punctuation">(</span>htmlhandle<span class="token punctuation">,</span> <span class="token string">'lxml'</span><span class="token punctuation">)</span>
+    <span class="token comment"># 找到链接</span>
+    links <span class="token operator">=</span> soup<span class="token punctuation">.</span>find_all<span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> link <span class="token keyword">in</span> links<span class="token punctuation">:</span>
+        <span class="token comment"># 找到标题</span>
+        <span class="token keyword">if</span> link<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'data-za-detail-view-element_name'</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'Title'</span><span class="token punctuation">:</span>
+            <span class="token comment"># 输出为 Markdown</span>
+            linkid <span class="token operator">=</span> linkid<span class="token operator">+</span><span class="token number">1</span>
+            output <span class="token operator">=</span> output<span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span>linkid<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'. ['</span><span class="token operator">+</span>link<span class="token punctuation">.</span>get_text<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'](https:'</span><span class="token operator">+</span>link<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'href'</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">')\n'</span>
+<span class="token comment"># 保存</span>
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'zhihu.md'</span><span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">,</span> encoding <span class="token operator">=</span> <span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
+    <span class="token builtin">file</span><span class="token punctuation">.</span>write<span class="token punctuation">(</span>output<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>参考了 AI 给出的代码以及许多相关博客。</p>
+<p>如果你要使用记得先安装依赖，懒得讲了，自行百度吧（逃~）。</p>
+<p>代码下载：<a href="main.py">main.py</a></p>
+
+  <p><a class="classtest-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/" rel="tag">技术杂谈</a> — Feb 12, 2025</p>
+  
+
+
+          <div class="row mt-2">
+  
+</div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src=""></script>
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>
